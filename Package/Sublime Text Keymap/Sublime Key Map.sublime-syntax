@@ -74,7 +74,7 @@ contexts:
               set: in-array-expect-comma
             - match: ''
               push: # match modifier keys first
-                - match: (shift|ctrl|alt|super)(\+)
+                - match: (shift|ctrl|alt|super|command|option)(\+)
                   captures:
                     1: support.function.modifier.key.sublimekeymap
                     2: keyword.modifier.key.connector.sublimekeymap
