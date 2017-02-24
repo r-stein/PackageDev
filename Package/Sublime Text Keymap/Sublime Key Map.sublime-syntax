@@ -17,7 +17,7 @@ contexts:
           pop: true
         - match: \{
           scope: punctuation.definition.dictionary.begin.json
-          push: [in-array-expect-comma, keyboard-keys]
+          push: [in-array-expect-comma, main-keys]
         - include: scope:source.json#comments
         - match: '[^\s\]{/]+'
           scope: invalid.illegal.key.sequence.sublimekeymap
@@ -47,10 +47,7 @@ contexts:
     - match: '[^\s,\]}{\[]+'
       scope: invalid.illegal.expected-comma.sublimekeymap
 
-  keyboard-keys:
-    - match: \}
-      scope: invalid.illegal.expected-key-sequence.sublimekeymap
-      pop: true
+  main-keys:
     - match: '(")(keys)(")\s*(:)\s*(\[)'
       captures:
         1: string.quoted.double.json punctuation.definition.string.begin.json
@@ -58,17 +55,23 @@ contexts:
         3: string.quoted.double.json punctuation.definition.string.end.json
         4: punctuation.separator.dictionary.key-value.json
         5: punctuation.definition.array.begin.json
-      set:
+      push:
         - match: \]
           scope: punctuation.definition.array.end.json
-          set: [main-keys, in-dictionary-expect-comma]
+          set: in-dictionary-expect-comma
+        - match: (")(<)(character)(>)(")
+          captures:
+            1: punctuation.keybinding.definition.key.sequence.start.sublimekeymap
+            3: entity.other.attribute-name.key.captured.sublimekeymap
+            5: punctuation.keybinding.definition.key.sequence.end.sublimekeymap
+          push: in-array-expect-comma
         - match: \"
           scope: punctuation.keybinding.definition.key.sequence.start.sublimekeymap
           push:
             - meta_content_scope: meta.key.sequence.sublimekeymap
             - match: \"
               scope: punctuation.keybinding.definition.key.sequence.end.sublimekeymap
-              pop: true
+              set: in-array-expect-comma
             - match: ''
               push: # match modifier keys first
                 - match: (shift|ctrl|alt|super)(\+)
@@ -93,8 +96,6 @@ contexts:
                     - match: .
                       scope: string.key.literal.sublimekeymap
         - include: scope:source.json#comments
-
-  main-keys:
     - match: '(")(command)(")\s*(:)'
       captures:
         1: string.quoted.double.json punctuation.definition.string.begin.json
