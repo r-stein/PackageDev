@@ -147,6 +147,7 @@ contexts:
                 4: string.quoted.double.json punctuation.definition.string.end.json
                 5: string.quoted.double.json punctuation.definition.snippet.begin.sublimekeymap
               set:
+                - meta_content_scope: meta.snippet.sublimekeymap
                 - match: (\\)(")
                   captures:
                     1: constant.character.escape.json
@@ -244,6 +245,40 @@ contexts:
           push:
             - meta_content_scope: meta.regex.sublimekeymap
             - include: scope:source.escapedregexp
+          with_prototype:
+            - match: (?=\")
+              pop: true
+    - match: (")(key)(")\s*(:)\s*(")(selector|eol_selector)(")\s*(,)\s*(")(operator)(")\s*(:)\s*(")(equal|not_equal)(")\s*(,)\s*(")(operand)(")\s*(:)\s*(")
+      captures:
+        1: string.quoted.double.json punctuation.definition.string.begin.json
+        2: string.quoted.double.json support.function.sublimekeymap
+        3: string.quoted.double.json punctuation.definition.string.end.json
+        4: punctuation.separator.dictionary.key-value.json
+        5: string.quoted.double.json punctuation.definition.string.begin.json
+        6: string.quoted.double.json support.function.sublimekeymap
+        7: string.quoted.double.json punctuation.definition.string.end.json
+        8: punctuation.separator.dictionary.pair.json
+        9: string.quoted.double.json punctuation.definition.string.begin.json
+        10: string.quoted.double.json support.function.sublimekeymap
+        11: string.quoted.double.json punctuation.definition.string.end.json
+        12: punctuation.separator.dictionary.key-value.json
+        13: string.quoted.double.json punctuation.definition.string.begin.json
+        14: string.quoted.double.json support.function.sublimekeymap
+        15: string.quoted.double.json punctuation.definition.string.end.json
+        16: punctuation.separator.dictionary.pair.json
+        17: string.quoted.double.json punctuation.definition.string.begin.json
+        18: string.quoted.double.json support.function.sublimekeymap
+        19: string.quoted.double.json punctuation.definition.string.end.json
+        20: punctuation.separator.dictionary.key-value.json
+        21: punctuation.definition.string.scope-selector.begin.sublimekeymap
+      push:
+        - match: \"
+          scope: punctuation.definition.string.scope-selector.end.sublimekeymap
+          set: in-dictionary-expect-comma
+        - match: ''
+          push:
+            - meta_content_scope: meta.scope-selector.sublimekeymap
+            - include: scope:text.scope-selector
           with_prototype:
             - match: (?=\")
               pop: true
