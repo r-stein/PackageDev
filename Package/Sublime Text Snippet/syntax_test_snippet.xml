@@ -1,4 +1,4 @@
-# SYNTAX TEST "Packages/PackageDev/Syntax Definitions/Sublime Snippet.sublime-syntax"
+# SYNTAX TEST "Packages/PackageDev/Package/Sublime Text Snippet/Sublime Snippet.sublime-syntax"
 <snippet>
     <content><![CDATA[
 #   ^^^^^^^^^ meta.tag
@@ -159,11 +159,12 @@ stray brackets:
  $ 1.00
 #^ invalid.illegal.unescaped-dollar
 
- ${0:$TM_SELECTED_TEXT}
+ ${0:$TM_SELECTED_TEXT\}}
 #  ^ constant
-#     ^^^^^^^^^^^^^^^^ constant
+#     ^^^^^^^^^^^^^^^^ constant.language
 #   ^^ - constant
-#                     ^ - constant
+#                     ^^ constant.character.escape.sublimesnippetraw
+#                       ^ - constant
 
 ${My_Own_Constant}
 # ^^^^^^^^^^^^^^^ constant.other
