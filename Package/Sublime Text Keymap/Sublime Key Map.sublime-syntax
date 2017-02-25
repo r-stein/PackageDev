@@ -16,7 +16,7 @@ contexts:
           scope: punctuation.definition.array.end.json
           set: only-comments
         - match: \{
-          scope: punctuation.definition.dictionary.begin.json
+          scope: punctuation.definition.dictionary.begin.json punctuation.definition.keybinding.begin.sublimekeymap
           push: [in-array-expect-comma, main-keys]
         - include: comments
         - match: '[^\s\]{/]+'
@@ -128,7 +128,7 @@ contexts:
         4: punctuation.separator.dictionary.key-value.json
       push: [in-dictionary-expect-comma, expect-array]
     - match: \}
-      scope: punctuation.definition.dictionary.end.json
+      scope: punctuation.definition.dictionary.end.json punctuation.definition.keybinding.end.sublimekeymap
       pop: true
     - match: (?=")
       push:

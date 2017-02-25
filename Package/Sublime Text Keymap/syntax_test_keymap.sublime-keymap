@@ -121,6 +121,7 @@
 //                                                                                    ^ punctuation.separator.array.json
 
     { "keys": ["tab"], "command": "insert_best_completion", "args": {"default": "\t", "exact": false, },
+//  ^ punctuation.definition.dictionary.begin.json punctuation.definition.keybinding.begin.sublimekeymap
 //                                                                    ^^^^^^^ string.quoted.double.json support.function.sublimekeymap
 //                                                                               ^^ string.quoted.double.json constant.character.escape.json
 //                                                                                  ^ punctuation.separator.dictionary.pair.json
@@ -140,6 +141,7 @@
             { "key": "preceding_text", "operator": "equal" },
         ]
     },
+//  ^ punctuation.definition.dictionary.end.json punctuation.definition.keybinding.end.sublimekeymap
 
 /**/
 
