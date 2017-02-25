@@ -156,21 +156,26 @@ contexts:
                 2: string.quoted.double.json support.function.sublimekeymap
                 3: string.quoted.double.json punctuation.definition.string.end.json
                 4: punctuation.separator.dictionary.key-value.json
-                5: string.quoted.double.json punctuation.definition.snippet.begin.sublimekeymap
+                5: string.quoted.double.json punctuation.definition.string.begin.json punctuation.definition.snippet.begin.sublimekeymap
               set:
                 - meta_content_scope: meta.snippet.sublimekeymap
-                - match: (\\)(")
-                  captures:
-                    1: constant.character.escape.json
                 - match: \"
-                  scope: string.quoted.double.json punctuation.definition.snippet.end.sublimekeymap
+                  scope: string.quoted.double.json punctuation.definition.string.end.json punctuation.definition.snippet.end.sublimekeymap
                   set:
                     - match: \}
                       scope: punctuation.definition.dictionary.end.json
                       set: [support-keys-or-snippet-args, in-dictionary-expect-comma]
                     - match: (?=\S)
                       push: in-dictionary-expect-comma
-            - include: scope:source.sublimesnippetraw
+                - match: ''
+                  push:
+                    - meta_content_scope: string.quoted.double.json
+                    - match: (?=")
+                      pop: true
+                    - match: (\\)(")
+                      captures:
+                        1: constant.character.escape.json
+                    - include: scope:source.sublimesnippetraw
             - match: \}
               scope: punctuation.definition.dictionary.end.json
               set: in-dictionary-expect-comma
