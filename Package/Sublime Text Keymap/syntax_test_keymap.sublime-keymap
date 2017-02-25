@@ -53,6 +53,7 @@
 //                 ^ -string.quoted.double.json
 //                    ^^^^^^^^ support.function.sublimekeymap
 //                   ^^^^^^^^^^ string.quoted.double.json
+//                             ^ punctuation.separator.dictionary.pair.json
 //                                ^^^^^^^^ support.function.sublimekeymap
 //                               ^^^^^^^^^^ string.quoted.double.json
 //                                                     ^^^^^^^ support.function.sublimekeymap
@@ -117,6 +118,23 @@
 //                                                                        ^ punctuation.definition.array.begin.json
 //                                                                         ^^^^^ string.quoted.double.json
 //                                                                              
+
+    { "keys": ["tab"], "command": "insert_best_completion", "args": {"default": "\t", "exact": false, },
+//                                                                    ^^^^^^^ string.quoted.double.json support.function.sublimekeymap
+//                                                                               ^^ string.quoted.double.json constant.character.escape.json
+//                                                                                  ^ punctuation.separator.dictionary.pair.json
+//                                                                                     ^^^^^ string.quoted.double.json support.function.sublimekeymap
+//                                                                                             ^^^^^ constant.language.json
+//                                                                                                  ^ punctuation.separator.dictionary.pair.json
+        "context":
+        [
+            { "key": "setting.tab_completion", "operator": "equal", "operand": true },
+            { "key": "preceding_text", "operator": "not_regex_match", "operand": ".*\\b[0-9]+$", "match_all": true },
+//                                                  ^^^^^^^^^^^^^^^ string.quoted.double.json support.function.sublimekeymap
+//                                                                                ^ keyword
+//                                                                                  ^^^ entity.other.attribute-name.anchor
+        ]
+    },
 
 /**/
 

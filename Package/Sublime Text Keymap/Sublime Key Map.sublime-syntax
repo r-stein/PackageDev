@@ -352,6 +352,10 @@ contexts:
       captures:
         1: punctuation.separator.dictionary.key-value.json
       set:
+        - match: (?=\[)
+          set: [in-dictionary-expect-comma, array]
+        - match: (?=\{)
+          set: [in-dictionary-expect-comma, dictionary]
         - include: value
         - include: in-dictionary-expect-comma
     - include: comments
