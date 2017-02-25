@@ -104,7 +104,7 @@
 , { "keys": ["\"", " ", "space"], "command": "insert_snippet", "args": {"contents": "\"$0\""} },
 //           ^^^^ string.quoted.double.json
 //            ^ constant.character.escape.json
-//                  ^ string.quoted.double.json invalid.illegal.key.sublimekeymap
+//                  ^ string.quoted.double.json string.key.literal.sublimekeymap - invalid.illegal.key.sublimekeymap
 //                       ^^^^^ string.quoted.double.json entity.other.attribute-name.key.named.sublimekeymap
 //                                                                                  ^^^^^^^^ string.quoted.double.json
 //                                                                                  ^ punctuation.definition.string.begin.json punctuation.definition.snippet.begin.sublimekeymap
@@ -114,10 +114,11 @@
 //                                                                                        ^ - punctuation
 //                                                                                         ^ punctuation.definition.string.end.json punctuation.definition.snippet.end.sublimekeymap
 
-    { "keys": ["alt+o"], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "hh", "h", "ipp", "inl", "m", "mm"]} },
-//                                                                        ^ punctuation.definition.array.begin.json
-//                                                                         ^^^^^ string.quoted.double.json
-//
+    { "keys": ["alt+o", "  "], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "hh", "h", "ipp", "inl", "m", "mm"]} },
+//                                                                              ^ punctuation.definition.array.begin.json
+//                                                                               ^^^^^ string.quoted.double.json
+//                       ^^ string.quoted.double.json invalid.illegal.key.sublimekeymap
+//                                                                                    ^ punctuation.separator.array.json
 
     { "keys": ["tab"], "command": "insert_best_completion", "args": {"default": "\t", "exact": false, },
 //                                                                    ^^^^^^^ string.quoted.double.json support.function.sublimekeymap
@@ -129,10 +130,14 @@
         "context":
         [
             { "key": "setting.tab_completion", "operator": "equal", "operand": true },
+//                    ^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json support.function.sublimekeymap
+//                                                          ^^^^^ string.quoted.double.json support.function.sublimekeymap
             { "key": "preceding_text", "operator": "not_regex_match", "operand": ".*\\b[0-9]+$", "match_all": true },
+//                    ^^^^^^^^^^^^^^ string.quoted.double.json support.function.sublimekeymap
 //                                                  ^^^^^^^^^^^^^^^ string.quoted.double.json support.function.sublimekeymap
 //                                                                                ^ keyword
 //                                                                                  ^^^ entity.other.attribute-name.anchor
+            { "key": "preceding_text", "operator": "equal" },
         ]
     },
 

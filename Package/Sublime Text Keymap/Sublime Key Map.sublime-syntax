@@ -95,7 +95,7 @@ contexts:
                       captures:
                         1: constant.character.escape.json
                         2: string.key.literal.sublimekeymap
-                    - match: 'f(?:2[1-9]|[3-9]\d+|\d{3,})|\s+'
+                    - match: 'f(?:2[1-9]|[3-9]\d+|\d{3,})|\s{2,}'
                       scope: invalid.illegal.key.sublimekeymap
                     - match: '\b(?:up|down|right|left|insert|home|end|pageup|pagedown|backspace|delete|tab|enter|pause|escape|space|keypad[0-9]|keypad_(?:period|divide|multiply|minus|plus|enter)|clear|sysreq|break|context_menu|browser_(?:back|forward|refresh|stop|search|favorites|home)|forward_slash|backquote|plus|equals|minus|f(20|1[0-9]|[1-9]))\b'
                       scope: entity.other.attribute-name.key.named.sublimekeymap
@@ -321,6 +321,26 @@ contexts:
           with_prototype:
             - match: (?=\")
               pop: true
+    - match: (")(key)(")\s*(:)\s*(")(preceding_text|following_text|num_selections|has_next_field|has_prev_field|panel_visible|overlay_visible|popup_visible|auto_complete_visible|setting\.\w+|last_command|selection_empty|text|indented_block|panel|panel_has_focus)(")\s*
+      captures:
+        1: string.quoted.double.json punctuation.definition.string.begin.json
+        2: string.quoted.double.json support.function.sublimekeymap
+        3: string.quoted.double.json punctuation.definition.string.end.json
+        4: punctuation.separator.dictionary.key-value.json
+        5: string.quoted.double.json punctuation.definition.string.begin.json
+        6: string.quoted.double.json support.function.sublimekeymap
+        7: string.quoted.double.json punctuation.definition.string.end.json
+      push: in-dictionary-expect-comma
+    - match: (")(operator)(")\s*(:)\s*(")(equal|not_equal)(")\s*
+      captures:
+        1: string.quoted.double.json punctuation.definition.string.begin.json
+        2: string.quoted.double.json support.function.sublimekeymap
+        3: string.quoted.double.json punctuation.definition.string.end.json
+        4: punctuation.separator.dictionary.key-value.json
+        5: string.quoted.double.json punctuation.definition.string.begin.json
+        6: string.quoted.double.json support.function.sublimekeymap
+        7: string.quoted.double.json punctuation.definition.string.end.json
+      push: in-dictionary-expect-comma
     - match: (")(\w*)(")\s*
       captures:
         1: string.quoted.double.json punctuation.definition.string.begin.json
