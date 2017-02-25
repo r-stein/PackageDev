@@ -7,18 +7,18 @@ file_extensions:
 scope: source.json.sublimekeymap
 contexts:
   main:
-    - include: scope:source.json#comments
+    - include: comments
     - match: '\['
       scope: punctuation.definition.array.begin.json
       push:
         - meta_content_scope: meta.keybinding.collection.sublimekeymap
         - match: '\]'
           scope: punctuation.definition.array.end.json
-          pop: true
+          set: only-comments
         - match: \{
           scope: punctuation.definition.dictionary.begin.json
           push: [in-array-expect-comma, main-keys]
-        - include: scope:source.json#comments
+        - include: comments
         - match: '[^\s\]{/]+'
           scope: invalid.illegal.key.sequence.sublimekeymap
 
@@ -37,7 +37,7 @@ contexts:
       scope: invalid.illegal.expected-comma.inside-dictionary.json
 
   expect-comma:
-    - include: scope:source.json#comments
+    - include: comments
     - match: (,)(\s*,)*
       captures:
         1: punctuation.separator.dictionary.pair.json
@@ -98,7 +98,7 @@ contexts:
                       scope: invalid.illegal.key.sublimekeymap
                     - match: .
                       scope: string.key.literal.sublimekeymap
-        - include: scope:source.json#comments
+        - include: comments
     - match: '(")(command)(")\s*(:)'
       captures:
         1: string.quoted.double.json punctuation.definition.string.begin.json
@@ -123,7 +123,7 @@ contexts:
     - match: \}
       scope: punctuation.definition.dictionary.end.json
       pop: true
-    - include: scope:source.json#comments
+    - include: comments
     - match: '[^"/\s]+'
       scope: invalid.illegal.unexpected-token.sublimekeymap
 
@@ -211,7 +211,7 @@ contexts:
             - include: value
 
   value:
-    - include: scope:source.json#comments
+    - include: comments
     - include: scope:source.json#string
     - include: scope:source.json#number
     - include: scope:source.json#constant
@@ -300,3 +300,11 @@ contexts:
       push:
         - include: value
         - include: in-dictionary-expect-comma
+
+  comments:
+    - include: scope:source.js#comments
+
+  only-comments:
+    - include: comments
+    - match: '[^/\s]+'
+      scope: invalid.illegal.expected-comment-or-eof.sublimekeymap

@@ -71,3 +71,7 @@
 
 // <- -comment
 ]
+  ,[]//fgfg
+// <- - invalid.illegal
+//^^^ invalid.illegal.expected-comment-or-eof.sublimekeymap
+//   ^^ comment.line.double-slash - invalid.illegal
