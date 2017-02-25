@@ -60,20 +60,22 @@ contexts:
           scope: punctuation.definition.array.end.json
           set: in-dictionary-expect-comma
         - match: (")(<)(character)(>)(")
+          scope: string.quoted.double.json
           captures:
             1: punctuation.keybinding.definition.key.sequence.start.sublimekeymap
             3: entity.other.attribute-name.key.captured.sublimekeymap
             5: punctuation.keybinding.definition.key.sequence.end.sublimekeymap
           push: in-array-expect-comma
         - match: \"
-          scope: punctuation.keybinding.definition.key.sequence.start.sublimekeymap
+          scope: string.quoted.double.json punctuation.keybinding.definition.key.sequence.start.sublimekeymap
           push:
             - meta_content_scope: meta.key.sequence.sublimekeymap
             - match: \"
-              scope: punctuation.keybinding.definition.key.sequence.end.sublimekeymap
+              scope: string.quoted.double.json punctuation.keybinding.definition.key.sequence.end.sublimekeymap
               set: in-array-expect-comma
             - match: ''
               push: # match modifier keys first
+                - meta_content_scope: string.quoted.double.json
                 - match: (shift|ctrl|alt|super|command|option)(\+)
                   captures:
                     1: support.function.modifier.key.sublimekeymap
@@ -81,6 +83,7 @@ contexts:
                     3: invalid.illegal.key.sequence.sublimekeymap
                 - match: '' # then proceed to other keys
                   set:
+                    - meta_content_scope: string.quoted.double.json
                     - match: (?=")
                       pop: true
                     - match: (\\)(")
@@ -253,7 +256,7 @@ contexts:
           with_prototype:
             - match: (?=\")
               pop: true
-    - match: (")(key)(")\s*(:)\s*(")(selector|eol_selector)(")\s*(,)\s*(")(operator)(")\s*(:)\s*(")(equal|not_equal)(")\s*(,)\s*(")(operand)(")\s*(:)\s*(")
+    - match: (")(key)(")\s*(:)\s*(")(selector|eol_selector)(")\s*(,)\s*(?:(")(operator)(")\s*(:)\s*(")(equal|not_equal)(")\s*(,)\s*)?(")(operand)(")\s*(:)\s*(")
       captures:
         1: string.quoted.double.json punctuation.definition.string.begin.json
         2: string.quoted.double.json support.function.sublimekeymap
@@ -275,15 +278,15 @@ contexts:
         18: string.quoted.double.json support.function.sublimekeymap
         19: string.quoted.double.json punctuation.definition.string.end.json
         20: punctuation.separator.dictionary.key-value.json
-        21: punctuation.definition.string.scope-selector.begin.sublimekeymap
+        21: string.quoted.double.json punctuation.definition.string.scope-selector.begin.sublimekeymap
       push:
-        - meta_scope: string.quoted.double.json
+        - meta_content_scope: string.quoted.double.json
         - match: \"
-          scope: punctuation.definition.string.scope-selector.end.sublimekeymap
+          scope: string.quoted.double.json punctuation.definition.string.scope-selector.end.sublimekeymap
           set: in-dictionary-expect-comma
         - match: ''
           push:
-            - meta_content_scope: meta.scope-selector.sublimekeymap
+            - meta_content_scope: string.quoted.double.json meta.scope-selector.sublimekeymap
             - include: scope:text.scope-selector
           with_prototype:
             - match: (?=\")

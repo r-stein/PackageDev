@@ -39,7 +39,7 @@
 //                                          ^ punctuation.definition.string.scope-selector.begin.sublimekeymap
 //                                                 ^ punctuation.separator.scope-segments.scope-selector
 //                                                      ^ punctuation.separator.scope-segments.scope-selector
-//                                                                    ^ punctuation.definition.string.scope-selector.begin.sublimekeymap
+//                                                                    ^ punctuation.definition.string.scope-selector.end.sublimekeymap
         ]
     },
 
@@ -63,7 +63,7 @@
 //                                                               ^ punctuation.definition.string.scope-selector.begin.sublimekeymap
 //                                                                      ^ punctuation.separator.scope-segments.scope-selector
 //                                                                           ^ punctuation.separator.scope-segments.scope-selector
-//                                                                                         ^ punctuation.definition.string.scope-selector.begin.sublimekeymap
+//                                                                                         ^ punctuation.definition.string.scope-selector.end.sublimekeymap
         ]
     },
 
