@@ -17,7 +17,7 @@
 //                    ^^^^^^^^^ string.quoted.double.json
 //                               ^^^^^^^ string.quoted.double.json
 //                                ^^^^^ support.constant.command-name.sublimekeymap
-//                                        ^ punctuation.separator.dictionary.pair.json
+//                                        ^ punctuation.separator.array.json
 
 
     {
@@ -93,14 +93,14 @@
 //                        ^^^^^^^ string.quoted.double.json keyword.other.sublimekeymap
 //                                           ^^^^ string.quoted.double.json keyword.other.sublimekeymap
 //                                                   ^^^ string.quoted.double.json
-//                                                      ^ punctuation.separator.dictionary.pair.json
+//                                                      ^ punctuation.separator.array.json
 //                                                        ^^^ string.quoted.double.json
 //                                                                       ^ invalid.illegal.expected-string-or-end-of-array.sublime-keymap
 //                                                                           ^^^ string.quoted.double.json entity.other.attribute-name.key.named.sublimekeymap
 //                                                                                  ^^^ string.quoted.double.json invalid.illegal.key.sublimekeymap
 //                                                                                      ^ punctuation.definition.array.end.json
 
-, { "keys": ["\"", " ", "space"], "command": "insert_snippet", "args": {"contents": "\"$0\""} }
+, { "keys": ["\"", " ", "space"], "command": "insert_snippet", "args": {"contents": "\"$0\""} },
 //           ^^^^ string.quoted.double.json
 //            ^ constant.character.escape.json
 //                  ^ string.quoted.double.json invalid.illegal.key.sublimekeymap
@@ -112,6 +112,11 @@
 //                                                                                       ^ constant.character.escape.json
 //                                                                                        ^ - punctuation
 //                                                                                         ^ punctuation.definition.string.end.json punctuation.definition.snippet.end.sublimekeymap
+
+    { "keys": ["alt+o"], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "hh", "h", "ipp", "inl", "m", "mm"]} },
+//                                                                        ^ punctuation.definition.array.begin.json
+//                                                                         ^^^^^ string.quoted.double.json
+//                                                                              
 
 /**/
 

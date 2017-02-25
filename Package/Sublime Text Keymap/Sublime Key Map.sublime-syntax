@@ -26,6 +26,11 @@ contexts:
     - match: (?=\])
       pop: true
     - include: expect-comma
+    - match: (,)(\s*,)*
+      captures:
+        1: punctuation.separator.array.json
+        2: invalid.illegal.unexpected-separator.json
+      pop: true
     - match: '[^\],]+'
       scope: invalid.illegal.expected-comma.inside-array.json
 
@@ -33,16 +38,16 @@ contexts:
     - match: (?=\})
       pop: true
     - include: expect-comma
-    - match: '[^},]+'
-      scope: invalid.illegal.expected-comma.inside-dictionary.json
-
-  expect-comma:
-    - include: comments
     - match: (,)(\s*,)*
       captures:
         1: punctuation.separator.dictionary.pair.json
         2: invalid.illegal.unexpected-separator.json
       pop: true
+    - match: '[^},]+'
+      scope: invalid.illegal.expected-comma.inside-dictionary.json
+
+  expect-comma:
+    - include: comments
     - match: \s+
     - match: '[^\s,\]}{\[]+'
       scope: invalid.illegal.expected-comma.sublimekeymap
@@ -234,6 +239,7 @@ contexts:
             - match: (?=\])
               pop: true
             - include: value
+            - include: in-array-expect-comma
 
   value:
     - include: comments
