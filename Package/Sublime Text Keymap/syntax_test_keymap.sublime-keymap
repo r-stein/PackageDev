@@ -82,7 +82,7 @@
     }
 //  ^ punctuation.definition.dictionary.end.json
 
-    , {"keyz": ["test"], "command": "blah", "keys": ["a", "b"], "keys": [a]}
+    , {"keyz": ["test"], "command": "blah", "keys": ["a", "b"], "keys": [a, "f20", "f21"]}
 //      ^^^^ string.quoted.double.json support.function.sublimekeymap
 //               ^^^^ string.quoted.double.json
 //                    ^ punctuation.definition.array.end.json
@@ -93,7 +93,9 @@
 //                                                      ^ punctuation.separator.dictionary.pair.json
 //                                                        ^^^ string.quoted.double.json
 //                                                                       ^ invalid.illegal.expected-string-or-end-of-array.sublime-keymap
-//                                                                        ^ punctuation.definition.array.end.json
+//                                                                           ^^^ string.quoted.double.json entity.other.attribute-name.key.named.sublimekeymap
+//                                                                                  ^^^ string.quoted.double.json invalid.illegal.key.sublimekeymap
+//                                                                                      ^ punctuation.definition.array.end.json
 
 /**/
 
