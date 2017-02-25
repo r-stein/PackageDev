@@ -1,0 +1,73 @@
+// SYNTAX TEST "Packages/PackageDev/Package/Sublime Text Keymap/Sublime Key Map.sublime-syntax"
+
+// <- source.json.sublimekeymap
+
+// comment
+// ^^^^^^^^ comment.line.double-slash
+[
+
+    { "keys": ["f5"], "command": "build" },
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.keybinding.collection.sublimekeymap
+//     ^^^^ string.quoted.double.json keyword.other.sublimekeymap
+//    ^^^^^^ string.quoted.double.json
+//          ^ -string.quoted.double.json
+//              ^^ entity.other.attribute-name.key.named.sublimekeymap
+//             ^^^^ string.quoted.double.json
+//                     ^^^^^^^  string.quoted.double.json keyword.other.sublimekeymap
+//                    ^^^^^^^^^ string.quoted.double.json
+//                               ^^^^^^^ string.quoted.double.json
+//                                ^^^^^ support.constant.command-name.sublimekeymap
+//                                        ^ punctuation.separator.dictionary.pair.json
+
+
+    {
+        "keys": ["ctrl+a"], "command": "test_command",
+        "context":
+        [
+            { "key": "selector", "operand": "source.json.sublimekeymap" }
+//             ^^^ support.function.sublimekeymap
+//            ^^^^^ string.quoted.double.json
+//                 ^ -string.quoted.double.json
+//                    ^^^^^^^^ support.function.sublimekeymap
+//                   ^^^^^^^^^^ string.quoted.double.json
+//                                ^^^^^^^ support.function.sublimekeymap
+//                               ^^^^^^^^^ string.quoted.double.json
+//                                        ^ -string.quoted.double.json
+//                                        ^ -string.quoted.double.json
+//                                           ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.scope-selector.sublimekeymap
+//                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json
+//                                          ^ punctuation.definition.string.scope-selector.begin.sublimekeymap
+//                                                 ^ punctuation.separator.scope-segments.scope-selector
+//                                                      ^ punctuation.separator.scope-segments.scope-selector
+//                                                                    ^ punctuation.definition.string.scope-selector.begin.sublimekeymap
+        ]
+    },
+
+    {
+        "keys": ["ctrl+a"], "command": "test_command",
+        "context":
+        [
+            { "key": "selector", "operator": "equal", "operand": "source.json.sublimekeymap" }
+//             ^^^ support.function.sublimekeymap
+//            ^^^^^ string.quoted.double.json
+//                 ^ -string.quoted.double.json
+//                    ^^^^^^^^ support.function.sublimekeymap
+//                   ^^^^^^^^^^ string.quoted.double.json
+//                                ^^^^^^^^ support.function.sublimekeymap
+//                               ^^^^^^^^^^ string.quoted.double.json
+//                                                     ^^^^^^^ support.function.sublimekeymap
+//                                                    ^^^^^^^^^ string.quoted.double.json
+//                                                             ^ -string.quoted.double.json
+//                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.scope-selector.sublimekeymap
+//                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json
+//                                                               ^ punctuation.definition.string.scope-selector.begin.sublimekeymap
+//                                                                      ^ punctuation.separator.scope-segments.scope-selector
+//                                                                           ^ punctuation.separator.scope-segments.scope-selector
+//                                                                                         ^ punctuation.definition.string.scope-selector.begin.sublimekeymap
+        ]
+    },
+
+/**/
+
+// <- -comment
+]
