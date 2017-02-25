@@ -33,7 +33,7 @@
 //                                ^^^^^^^ support.function.sublimekeymap
 //                               ^^^^^^^^^ string.quoted.double.json
 //                                        ^ -string.quoted.double.json
-//                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ -string.quoted.double.json string.quoted.double.json
+//                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ - string.quoted.double.json string.quoted.double.json
 //                                           ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.scope-selector.sublimekeymap
 //                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json
 //                                          ^ punctuation.definition.string.scope-selector.begin.sublimekeymap

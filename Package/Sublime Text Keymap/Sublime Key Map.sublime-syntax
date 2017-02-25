@@ -311,7 +311,6 @@ contexts:
         20: punctuation.separator.dictionary.key-value.json
         21: string.quoted.double.json punctuation.definition.string.scope-selector.begin.sublimekeymap
       push:
-        - meta_content_scope: string.quoted.double.json
         - match: \"
           scope: string.quoted.double.json punctuation.definition.string.scope-selector.end.sublimekeymap
           set: in-dictionary-expect-comma
