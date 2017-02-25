@@ -167,8 +167,14 @@ contexts:
                         - match: (?=\S)
                           push: in-dictionary-expect-comma
                 - include: scope:source.sublimesnippetraw
+                - match: \}
+                  scope: punctuation.definition.dictionary.end.json
+                  set: in-dictionary-expect-comma
+                - include: support-keys
             - match: (?=\S)
               set: [in-dictionary-expect-comma, expect-dictionary]
+        - match: (?=})
+          pop: true
     - match: (\")([a-z_]+)(\")
       captures:
         1: string.quoted.double.json punctuation.definition.string.begin.json

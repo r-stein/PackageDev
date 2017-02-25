@@ -65,7 +65,20 @@
 //                                                                           ^ punctuation.separator.scope-segments.scope-selector
 //                                                                                         ^ punctuation.definition.string.scope-selector.end.sublimekeymap
         ]
-    },
+    }
+    
+    {
+//  ^^ invalid.illegal.expected-comma.inside-array.json
+    ,{
+        "keys": ["ctrl+i"],
+        "command": "insert_snippet",
+        "args": {
+            "name": "Packages/XML/Snippets/long-tag.sublime-snippet"
+//           ^^^^ meta.keybinding.collection.sublimekeymap string.quoted.double.json support.function.sublimekeymap
+        }
+//      ^ punctuation.definition.dictionary.end.json
+    }
+//  ^ punctuation.definition.dictionary.end.json
 
 /**/
 
