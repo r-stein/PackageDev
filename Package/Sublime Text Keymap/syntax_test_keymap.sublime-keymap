@@ -75,10 +75,25 @@
         "args": {
             "name": "Packages/XML/Snippets/long-tag.sublime-snippet"
 //           ^^^^ meta.keybinding.collection.sublimekeymap string.quoted.double.json support.function.sublimekeymap
-        }
+        }, "args": { "contents": "$1" }
 //      ^ punctuation.definition.dictionary.end.json
+//          ^^^^ string.quoted.double.json keyword.other.sublimekeymap
+//                    ^^^^^^^^ string.quoted.double.json support.function.sublimekeymap
     }
 //  ^ punctuation.definition.dictionary.end.json
+
+    , {"keyz": ["test"], "command": "blah", "keys": ["a", "b"], "keys": [a]}
+//      ^^^^ string.quoted.double.json support.function.sublimekeymap
+//               ^^^^ string.quoted.double.json
+//                    ^ punctuation.definition.array.end.json
+//                     ^ punctuation.separator.dictionary.pair.json
+//                        ^^^^^^^ string.quoted.double.json keyword.other.sublimekeymap
+//                                           ^^^^ string.quoted.double.json keyword.other.sublimekeymap
+//                                                   ^^^ string.quoted.double.json
+//                                                      ^ punctuation.separator.dictionary.pair.json
+//                                                        ^^^ string.quoted.double.json
+//                                                                       ^ invalid.illegal.expected-string-or-end-of-array.sublime-keymap
+//                                                                        ^ punctuation.definition.array.end.json
 
 /**/
 
