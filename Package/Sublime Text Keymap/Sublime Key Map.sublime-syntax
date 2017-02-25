@@ -316,16 +316,16 @@ contexts:
         1: string.quoted.double.json punctuation.definition.string.begin.json
         2: string.quoted.double.json support.function.sublimekeymap
         3: string.quoted.double.json punctuation.definition.string.end.json
+      push: expect-colon
+    - match: \"
+      captures:
+        1: punctuation.definition.string.begin.json
       push:
-        - match: (:)\s*
-          captures:
-            1: punctuation.separator.dictionary.key-value.json
-          set:
-            - include: value
-            - include: in-dictionary-expect-comma
-        - include: comments
-        - match: '[^:\s/]+'
-          scope: invalid.illegal.expected-colon.json
+        - meta_scope: string.quoted.double.json
+        - meta_content_scope: support.function.sublimekeymap
+        - match: \"
+          scope: punctuation.definition.string.end.json
+          set: expect-colon
     - include: comments
 
   comments:
@@ -335,3 +335,14 @@ contexts:
     - include: comments
     - match: '[^/\s]+'
       scope: invalid.illegal.expected-comment-or-eof.sublimekeymap
+
+  expect-colon:
+    - match: (:)\s*
+      captures:
+        1: punctuation.separator.dictionary.key-value.json
+      set:
+        - include: value
+        - include: in-dictionary-expect-comma
+    - include: comments
+    - match: '[^:\s/]+'
+      scope: invalid.illegal.expected-colon.json
