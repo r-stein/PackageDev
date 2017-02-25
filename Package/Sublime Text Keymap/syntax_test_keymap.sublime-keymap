@@ -33,7 +33,7 @@
 //                                ^^^^^^^ support.function.sublimekeymap
 //                               ^^^^^^^^^ string.quoted.double.json
 //                                        ^ -string.quoted.double.json
-//                                        ^ -string.quoted.double.json
+//                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ -string.quoted.double.json string.quoted.double.json
 //                                           ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.scope-selector.sublimekeymap
 //                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json
 //                                          ^ punctuation.definition.string.scope-selector.begin.sublimekeymap
@@ -67,7 +67,7 @@
 //                                                                                         ^ punctuation.definition.string.scope-selector.end.sublimekeymap
         ]
     }
-    
+
     {
 //  ^^ invalid.illegal.expected-comma.inside-array.json
     ,{
@@ -117,7 +117,7 @@
     { "keys": ["alt+o"], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "hh", "h", "ipp", "inl", "m", "mm"]} },
 //                                                                        ^ punctuation.definition.array.begin.json
 //                                                                         ^^^^^ string.quoted.double.json
-//                                                                              
+//
 
     { "keys": ["tab"], "command": "insert_best_completion", "args": {"default": "\t", "exact": false, },
 //                                                                    ^^^^^^^ string.quoted.double.json support.function.sublimekeymap
