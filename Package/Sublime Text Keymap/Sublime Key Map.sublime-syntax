@@ -251,11 +251,13 @@ contexts:
 
   expect-dictionary:
     - include: dictionary
+    - include: comments
     - match: '[^{\s]+'
       scope: invalid.illegal.expected-dictionary.sublimekeymap
 
   expect-array:
     - include: array
+    - include: comments
     - match: '[^\[\s]+'
       scope: invalid.illegal.expected-array.sublimekeymap
 

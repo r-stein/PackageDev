@@ -145,6 +145,19 @@
     },
 //  ^ punctuation.definition.dictionary.end.json punctuation.definition.keybinding.end.sublimekeymap
 
+    { "keys": ["<character>"], "command": "text_and_align_table", "context":
+//               ^^^^^^^^^ string.quoted.double.json entity.other.attribute-name.key.captured.sublimekeymap
+//                                                                 ^^^^^^^ string.quoted.double.json keyword.other.sublimekeymap
+// this is a comment
+// ^^^^^^^^^^^^^^^^^^ comment.line.double-slash
+        [
+//      ^ punctuation.definition.array.begin.json
+            { "key": "setting.enable_table_editor", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*\\|", "match_all": true },
+            { "key": "following_text", "operator": "regex_match", "operand": "\\s*\\|.*$", "match_all": true }
+        ]
+    },
+
 /**/
 
 // <- -comment
