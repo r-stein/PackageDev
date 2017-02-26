@@ -81,7 +81,8 @@
         }, "args": { "contents": "$1" }
 //      ^ punctuation.definition.dictionary.end.json
 //          ^^^^ string.quoted.double.json keyword.other.sublimekeymap
-//                    ^^^^^^^^ meta.dictionary-key.json string.quoted.double.json support.function.sublimekeymap
+//                   ^^^^^^^^^^ meta.dictionary-key.json string.quoted.double.json
+//                    ^^^^^^^^ support.function.sublimekeymap
 //                                ^ keyword.other.block.start.sublimesnippetraw
 //                               ^^^^ string.quoted.double.json - meta.dictionary-key.json
 //                                  ^ punctuation.definition.snippet.end.sublimekeymap
@@ -89,7 +90,8 @@
 //  ^ punctuation.definition.dictionary.end.json
 
     , {"keyz": ["test"], "command": "blah", "keys": ["a", "b"], "keys": [a, "f20", "f21"]}
-//      ^^^^ string.quoted.double.json support.function.sublimekeymap
+//      ^^^^ support.function.sublimekeymap
+//     ^^^^^^ meta.dictionary-key.json string.quoted.double.json
 //               ^^^^ string.quoted.double.json
 //                    ^ punctuation.definition.array.end.json
 //                     ^ punctuation.separator.dictionary.pair.json
@@ -117,9 +119,9 @@
 //                                                                                         ^ punctuation.definition.string.end.json punctuation.definition.snippet.end.sublimekeymap
 
     { "keys": ["alt+o", "  "], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "hh", "h", "ipp", "inl", "m", "mm"]} },
-//                                                                              ^ punctuation.definition.array.begin.json
-//                                                                               ^^^^^ string.quoted.double.json
 //                       ^^ string.quoted.double.json invalid.illegal.key.sublimekeymap
+//                                                                              ^ punctuation.definition.array.begin.json
+//                                                                               ^^^^^ string.quoted.double.json - support.function - meta.dictionary-key.json
 //                                                                                    ^ punctuation.separator.array.json
 
     { "keys": ["tab"], "command": "insert_best_completion", "args": {"default": "\t", "exact": false, },
@@ -155,7 +157,11 @@
 //      ^ punctuation.definition.array.begin.json
             { "key": "setting.enable_table_editor", "operator": "equal", "operand": true, "match_all": true },
             { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*\\|", "match_all": true },
-            { "key": "following_text", "operator": "regex_match", "operand": "\\s*\\|.*$", "match_all": true }
+            { "key": "following_text", "operator": "regex_match", "operand": "\\s*\\|.*$", "match_all": true },
+            { "key": "settingabc" },
+//                    ^^^^^^^^^^ string.quoted.double.json - storage.type.context.key-value.sublimekeymap
+            { "key": "setting.abc.def_ghi" },
+//                    ^^^^^^^^^^^^^^^^^^^ string.quoted.double.json storage.type.context.key-value.sublimekeymap
         ]
     },
 

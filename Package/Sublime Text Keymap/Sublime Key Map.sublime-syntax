@@ -21,6 +21,8 @@ contexts:
         - include: comments
         - match: '[^\s\]{/]+'
           scope: invalid.illegal.key.sequence.sublimekeymap
+    - match: '[^\s/\[]+'
+      scope: invalid.illegal.expected-array.sublimekeymap
 
   in-array-expect-comma:
     - match: (?=\])
@@ -324,7 +326,7 @@ contexts:
           with_prototype:
             - match: (?=\")
               pop: true
-    - match: (")(key)(")\s*(:)\s*(")(preceding_text|following_text|num_selections|has_next_field|has_prev_field|panel_visible|overlay_visible|popup_visible|auto_complete_visible|setting\.\w+|last_command|selection_empty|text|indented_block|panel|panel_has_focus)(")\s*
+    - match: (")(key)(")\s*(:)\s*(")(preceding_text|following_text|num_selections|has_next_field|has_prev_field|panel_visible|overlay_visible|popup_visible|auto_complete_visible|setting\.[.\w]+|last_command|selection_empty|text|indented_block|panel|panel_has_focus)(")\s*
       captures:
         1: meta.dictionary-key.json string.quoted.double.json punctuation.definition.string.begin.json
         2: meta.dictionary-key.json string.quoted.double.json support.function.sublimekeymap
@@ -358,6 +360,9 @@ contexts:
         - meta_content_scope: support.function.sublimekeymap
         - match: \"
           scope: punctuation.definition.string.end.json
+          set: expect-colon
+        - match: $\n?
+          scope: invalid.illegal.unclosed-string.json
           set: expect-colon
     - include: comments
 
