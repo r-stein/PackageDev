@@ -10,7 +10,7 @@
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.keybinding.collection.sublimekeymap
 //     ^^^^ string.quoted.double.json keyword.other.sublimekeymap
 //    ^^^^^^ string.quoted.double.json
-//          ^ -string.quoted.double.json
+//          ^ - string.quoted.double.json
 //              ^^ entity.other.attribute-name.key.named.sublimekeymap
 //             ^^^^ string.quoted.double.json
 //                     ^^^^^^^  string.quoted.double.json keyword.other.sublimekeymap
@@ -27,12 +27,12 @@
             { "key": "selector", "operand": "source.json.sublimekeymap" }
 //             ^^^ support.function.sublimekeymap
 //            ^^^^^ string.quoted.double.json
-//                 ^ -string.quoted.double.json
-//                    ^^^^^^^^ support.function.sublimekeymap
+//                 ^ - string.quoted.double.json
+//                    ^^^^^^^^ storage.type.context.key-value.sublimekeymap
 //                   ^^^^^^^^^^ string.quoted.double.json
 //                                ^^^^^^^ support.function.sublimekeymap
 //                               ^^^^^^^^^ string.quoted.double.json
-//                                        ^ -string.quoted.double.json
+//                                        ^ - string.quoted.double.json
 //                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ - string.quoted.double.json string.quoted.double.json
 //                                           ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.scope-selector.sublimekeymap
 //                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json
@@ -50,15 +50,16 @@
             { "key": "selector", "operator": "equal", "operand": "source.json.sublimekeymap" }
 //             ^^^ support.function.sublimekeymap
 //            ^^^^^ string.quoted.double.json
-//                 ^ -string.quoted.double.json
-//                    ^^^^^^^^ support.function.sublimekeymap
+//                 ^ - string.quoted.double.json
+//                    ^^^^^^^^ storage.type.context.key-value.sublimekeymap
 //                   ^^^^^^^^^^ string.quoted.double.json
 //                             ^ punctuation.separator.dictionary.pair.json
 //                                ^^^^^^^^ support.function.sublimekeymap
 //                               ^^^^^^^^^^ string.quoted.double.json
+//                                            ^^^^^ keyword.operator.context.key-value.sublimekeymap
 //                                                     ^^^^^^^ support.function.sublimekeymap
 //                                                    ^^^^^^^^^ string.quoted.double.json
-//                                                             ^ -string.quoted.double.json
+//                                                             ^ - string.quoted.double.json
 //                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.scope-selector.sublimekeymap
 //                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json
 //                                                               ^ punctuation.definition.string.scope-selector.begin.sublimekeymap
@@ -73,6 +74,7 @@
     ,{
         "keys": ["ctrl+i"],
         "command": "insert_snippet",
+//                  ^^^^^^^^^^^^^^ string.quoted.double.json support.constant.command-name.sublimekeymap
         "args": {
             "name": "Packages/XML/Snippets/long-tag.sublime-snippet"
 //           ^^^^ meta.keybinding.collection.sublimekeymap string.quoted.double.json support.function.sublimekeymap
@@ -131,11 +133,11 @@
         "context":
         [
             { "key": "setting.tab_completion", "operator": "equal", "operand": true },
-//                    ^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json support.function.sublimekeymap
-//                                                          ^^^^^ string.quoted.double.json support.function.sublimekeymap
+//                    ^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json storage.type.context.key-value.sublimekeymap
+//                                                          ^^^^^ string.quoted.double.json keyword.operator.context.key-value.sublimekeymap
             { "key": "preceding_text", "operator": "not_regex_match", "operand": ".*\\b[0-9]+$", "match_all": true },
-//                    ^^^^^^^^^^^^^^ string.quoted.double.json support.function.sublimekeymap
-//                                                  ^^^^^^^^^^^^^^^ string.quoted.double.json support.function.sublimekeymap
+//                    ^^^^^^^^^^^^^^ string.quoted.double.json storage.type.context.key-value.sublimekeymap
+//                                                  ^^^^^^^^^^^^^^^ string.quoted.double.json keyword.operator.context.key-value.sublimekeymap
 //                                                                                ^ keyword
 //                                                                                  ^^^ entity.other.attribute-name.anchor
             { "key": "preceding_text", "operator": "equal" },
