@@ -9,13 +9,13 @@
     { "keys": ["f5"], "command": "build" },
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.keybinding.collection.sublimekeymap
 //     ^^^^ string.quoted.double.json keyword.other.sublimekeymap
-//    ^^^^^^ string.quoted.double.json
-//          ^ - string.quoted.double.json
+//    ^^^^^^ meta.dictionary-key.json string.quoted.double.json
+//          ^ - string.quoted.double.json - meta.dictionary-key.json
 //              ^^ entity.other.attribute-name.key.named.sublimekeymap
 //             ^^^^ string.quoted.double.json
-//                     ^^^^^^^  string.quoted.double.json keyword.other.sublimekeymap
-//                    ^^^^^^^^^ string.quoted.double.json
-//                               ^^^^^^^ string.quoted.double.json
+//                     ^^^^^^^ keyword.other.sublimekeymap
+//                    ^^^^^^^^^ meta.dictionary-key.json string.quoted.double.json
+//                               ^^^^^^^ string.quoted.double.json - meta.dictionary-key.json
 //                                ^^^^^ support.constant.command-name.sublimekeymap
 //                                        ^ punctuation.separator.array.json
 
@@ -26,13 +26,13 @@
         [
             { "key": "selector", "operand": "source.json.sublimekeymap" }
 //             ^^^ support.function.sublimekeymap
-//            ^^^^^ string.quoted.double.json
-//                 ^ - string.quoted.double.json
+//            ^^^^^ meta.dictionary-key.json string.quoted.double.json
+//                 ^ - string.quoted.double.json - meta.dictionary-key.json
 //                    ^^^^^^^^ storage.type.context.key-value.sublimekeymap
 //                   ^^^^^^^^^^ string.quoted.double.json
 //                                ^^^^^^^ support.function.sublimekeymap
-//                               ^^^^^^^^^ string.quoted.double.json
-//                                        ^ - string.quoted.double.json
+//                               ^^^^^^^^^ meta.dictionary-key.json string.quoted.double.json
+//                                        ^ - string.quoted.double.json - meta.dictionary-key.json
 //                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ - string.quoted.double.json string.quoted.double.json
 //                                           ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.scope-selector.sublimekeymap
 //                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json
@@ -55,7 +55,7 @@
 //                   ^^^^^^^^^^ string.quoted.double.json
 //                             ^ punctuation.separator.dictionary.pair.json
 //                                ^^^^^^^^ support.function.sublimekeymap
-//                               ^^^^^^^^^^ string.quoted.double.json
+//                               ^^^^^^^^^^ meta.dictionary-key.json string.quoted.double.json
 //                                            ^^^^^ keyword.operator.context.key-value.sublimekeymap
 //                                                     ^^^^^^^ support.function.sublimekeymap
 //                                                    ^^^^^^^^^ string.quoted.double.json
@@ -74,16 +74,16 @@
     ,{
         "keys": ["ctrl+i"],
         "command": "insert_snippet",
-//                  ^^^^^^^^^^^^^^ string.quoted.double.json support.constant.command-name.sublimekeymap
+//                  ^^^^^^^^^^^^^^ string.quoted.double.json support.constant.command-name.sublimekeymap - meta.dictionary-key.json
         "args": {
             "name": "Packages/XML/Snippets/long-tag.sublime-snippet"
-//           ^^^^ meta.keybinding.collection.sublimekeymap string.quoted.double.json support.function.sublimekeymap
+//           ^^^^ meta.dictionary-key.json string.quoted.double.json support.function.sublimekeymap
         }, "args": { "contents": "$1" }
 //      ^ punctuation.definition.dictionary.end.json
 //          ^^^^ string.quoted.double.json keyword.other.sublimekeymap
-//                    ^^^^^^^^ string.quoted.double.json support.function.sublimekeymap
+//                    ^^^^^^^^ meta.dictionary-key.json string.quoted.double.json support.function.sublimekeymap
 //                                ^ keyword.other.block.start.sublimesnippetraw
-//                               ^^^^ string.quoted.double.json
+//                               ^^^^ string.quoted.double.json - meta.dictionary-key.json
 //                                  ^ punctuation.definition.snippet.end.sublimekeymap
     }
 //  ^ punctuation.definition.dictionary.end.json
@@ -133,11 +133,12 @@
         "context":
         [
             { "key": "setting.tab_completion", "operator": "equal", "operand": true },
-//                    ^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json storage.type.context.key-value.sublimekeymap
-//                                                          ^^^^^ string.quoted.double.json keyword.operator.context.key-value.sublimekeymap
+//                    ^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double.json storage.type.context.key-value.sublimekeymap - meta.dictionary-key.json
+//                                             ^^^^^^^^^^ meta.dictionary-key.json string.quoted.double.json
+//                                                          ^^^^^ string.quoted.double.json keyword.operator.context.key-value.sublimekeymap - meta.dictionary-key.json
             { "key": "preceding_text", "operator": "not_regex_match", "operand": ".*\\b[0-9]+$", "match_all": true },
 //                    ^^^^^^^^^^^^^^ string.quoted.double.json storage.type.context.key-value.sublimekeymap
-//                                                  ^^^^^^^^^^^^^^^ string.quoted.double.json keyword.operator.context.key-value.sublimekeymap
+//                                                  ^^^^^^^^^^^^^^^ string.quoted.double.json keyword.operator.context.key-value.sublimekeymap - meta.dictionary-key.json
 //                                                                                ^ keyword
 //                                                                                  ^^^ entity.other.attribute-name.anchor
             { "key": "preceding_text", "operator": "equal" },
