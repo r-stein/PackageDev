@@ -1,5 +1,5 @@
 {
-      "scope": "meta.array.key.sequence.sublimekeymap",
+      "scope": "source.json.sublimekeymap meta.key.sequence.sublimekeymap string.quoted.double.json",
 
       "completions": [
       "super+",

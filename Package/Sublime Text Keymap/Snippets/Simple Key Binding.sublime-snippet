@@ -3,6 +3,6 @@
 	"keys": ["${1:ctrl+shift+h}"],
 	"command": "${2:foo_bar}"$0
 }]]></content>
-	<scope>source.sublimekeymap</scope>
+	<scope>source.json.sublimekeymap meta.structure.array.json - meta.structure.dictionary.json</scope>
 	<tabTrigger>k</tabTrigger>
 </snippet>
