@@ -3,5 +3,5 @@
 	"$1": "$2"$0
 },]]></content>
 	<scope>source.json.sublimekeymap meta.keybinding.collection.sublimekeymap meta.structure.dictionary.json</scope>
-	<tabTrigger>args</tabTrigger>
+	<!-- <tabTrigger>args</tabTrigger> -->
 </snippet>
