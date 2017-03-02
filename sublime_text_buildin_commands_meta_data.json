@@ -1,0 +1,342 @@
+{
+    "auto_complete": {
+        "args": [],
+        "doc_string": "",
+    },
+    "build": {
+        "args": [/*TODO*/],
+        "doc_string": "",
+    },
+    "cancel_build": {
+        "args": [/*TODO*/],
+        "doc_string": "",
+    },
+    "clear_fields": {
+        "args": [],
+        "doc_string": "",
+    },
+    "close_file": {
+        "args": [],
+        "doc_string": "Close the active file.",
+    },
+    "copy": {
+        "args": [],
+        "doc_string": "",
+    },
+    "cut": {
+        "args": [],
+        "doc_string": "",
+    },
+    "decrease_font_size": {
+        "args": [],
+        "doc_string": "",
+    },
+    "delete_word": {
+        "args": [],
+        "doc_string": "",
+    },
+    "duplicate_line": {
+        "args": [],
+        "doc_string": "",
+    },
+    "expand_selection": {
+        "args": [/*TODO*/],
+        "doc_string": "",
+    },
+    "find_all_under": {
+        "args": [],
+        "doc_string": "",
+    },
+    "find_next": {
+        "args": [],
+        "doc_string": "",
+    },
+    "find_prev": {
+        "args": [],
+        "doc_string": "",
+    },
+    "find_under": {
+        "args": [],
+        "doc_string": "",
+    },
+    "find_under_expand": {
+        "args": [],
+        "doc_string": "",
+    },
+    "find_under_prev": {
+        "args": [],
+        "doc_string": "",
+    },
+    "focus_group": {
+        "args": [["group"]],
+        "doc_string": "",
+    },
+    "hide_auto_complete": {
+        "args": [],
+        "doc_string": "",
+    },
+    "hide_overlay": {
+        "args": [],
+        "doc_string": "",
+    },
+    "hide_panel": {
+        "args": [],
+        "doc_string": "",
+    },
+    "increase_font_size": {
+        "args": [],
+        "doc_string": "",
+    },
+    "indent": {
+        "args": [],
+        "doc_string": "",
+    },
+    "insert": {
+        "args": [["characters"]],
+        "doc_string": "",
+    },
+    "insert_snippet": {
+        "args": [["contents"]],
+        "doc_string": "",
+    },
+    "join_lines": {
+        "args": [],
+        "doc_string": "",
+    },
+    "left_delete": {
+        "args": [],
+        "doc_string": "",
+    },
+    "move": {
+        "args": [
+            ["forward", true],
+            ["lines", false],
+            ["by", "chars"]
+        ],
+        "doc_string": "",
+    },
+    "move_to": {
+        "args": [["to"]],
+        "doc_string": "",
+    },
+    "move_to_group": {
+        "args": [/*TODO*/],
+        "doc_string": "",
+    },
+    "new_file": {
+        "args": [],
+        "doc_string": "",
+    },
+    "new_window": {
+        "args": [],
+        "doc_string": "",
+    },
+    "next_field": {
+        "args": [],
+        "doc_string": "",
+    },
+    "next_misspelling": {
+        "args": [],
+        "doc_string": "",
+    },
+    "next_result": {
+        "args": [],
+        "doc_string": "",
+    },
+    "next_view": {
+        "args": [],
+        "doc_string": "",
+    },
+    "next_view_in_stack": {
+        "args": [],
+        "doc_string": "",
+    },
+    "open_dir": {
+        "args": [/*TODO*/],
+        "doc_string": "",
+    },
+    "paste": {
+        "args": [],
+        "doc_string": "",
+    },
+    "paste_and_indent": {
+        "args": [],
+        "doc_string": "",
+    },
+    "prev_field": {
+        "args": [],
+        "doc_string": "",
+    },
+    "prev_misspelling": {
+        "args": [],
+        "doc_string": "",
+    },
+    "prev_result": {
+        "args": [],
+        "doc_string": "",
+    },
+    "prev_view": {
+        "args": [],
+        "doc_string": "",
+    },
+    "prev_view_in_stack": {
+        "args": [],
+        "doc_string": "",
+    },
+    "prompt_open_file": {
+        "args": [],
+        "doc_string": "",
+    },
+    "prompt_save_as": {
+        "args": [],
+        "doc_string": "",
+    },
+    "prompt_select_project": {
+        "args": [],
+        "doc_string": "",
+    },
+    "redo": {
+        "args": [],
+        "doc_string": "",
+    },
+    "redo_or_repeat": {
+        "args": [],
+        "doc_string": "",
+    },
+    "reindent": {
+        "args": [],
+        "doc_string": "",
+    },
+    "right_delete": {
+        "args": [],
+        "doc_string": "",
+    },
+    "run_macro": {
+        "args": [],
+        "doc_string": "",
+    },
+    "run_macro_file": {
+        "args": [["file"]],
+        "doc_string": "",
+    },
+    "save": {
+        "args": [],
+        "doc_string": "",
+    },
+    "scroll_lines": {
+        "args": [["amount", 1.0]],
+        "doc_string": "",
+    },
+    "select_all": {
+        "args": [],
+        "doc_string": "",
+    },
+    "select_lines": {
+        "args": [["forward", true]],
+        "doc_string": "",
+    },
+    "set_layout": {
+        "args": [
+            ["cols", [0.0, 1.0]],
+            ["rows", [0.0, 1.0]],
+            ["cells", [[0, 0, 1, 1]]]
+        ],
+        "doc_string": "",
+    },
+    "show_overlay": {
+        "args": [
+            ["overlay"],
+            ["text"],
+            ["show_files"]
+            // TODO...
+        ],
+        "doc_string": "",
+    },
+    "show_panel": {
+        "args": [
+            ["panel"],
+            ["reverse", false]
+        ],
+        "doc_string": "",
+    },
+    "show_scope_name": {
+        "args": [],
+        "doc_string": "",
+    },
+    "single_selection": {
+        "args": [],
+        "doc_string": "",
+    },
+    "slurp_find_string": {
+        "args": [],
+        "doc_string": "",
+    },
+    "slurp_replace_string": {
+        "args": [],
+        "doc_string": "",
+    },
+    "soft_redo": {
+        "args": [],
+        "doc_string": "",
+    },
+    "soft_undo": {
+        "args": [],
+        "doc_string": "",
+    },
+    "sort_lines": {
+        "args": [],
+        "doc_string": "",
+    },
+    "split_selection_into_lines": {
+        "args": [],
+        "doc_string": "",
+    },
+    "swap_line_down": {
+        "args": [],
+        "doc_string": "",
+    },
+    "swap_line_up": {
+        "args": [],
+        "doc_string": "",
+    },
+    "switch_file": {
+        "args": [["extensions", ["c", "h"]]],
+        "doc_string": "",
+    },
+    "toggle_comment": {
+        "args": [["block", false]],
+        "doc_string": "",
+    },
+    "toggle_full_screen": {
+        "args": [],
+        "doc_string": "",
+    },
+    "toggle_overwrite": {
+        "args": [],
+        "doc_string": "",
+    },
+    "toggle_record_macro": {
+        "args": [],
+        "doc_string": "",
+    },
+    "toggle_side_bar": {
+        "args": [],
+        "doc_string": "",
+    },
+    "toggle_setting": {
+        "args": [],
+        "doc_string": "",
+    },
+    "transpose": {
+        "args": [],
+        "doc_string": "",
+    },
+    "undo": {
+        "args": [],
+        "doc_string": "",
+    },
+    "unindent": {
+        "args": [],
+        "doc_string": "",
+    },
+}

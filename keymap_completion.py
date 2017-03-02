@@ -66,14 +66,23 @@ class SublimeTextCommandCompletionListener(sublime_plugin.EventListener):
         return compl
 
 
-def get_buildin_command_args():
-    return {
-        "move": [
-            ("forward", True),
-            ("lines", False),
-            ("by", "chars")
-        ]  # TODO ...
-    }
+def get_buildin_command_meta_data():
+    if hasattr(get_buildin_command_meta_data, "result"):
+        return get_buildin_command_meta_data.result
+
+    res_paths = sublime.find_resources(
+        "sublime_text_buildin_commands_meta_data.json")
+    result = {}
+    for res_path in res_paths:
+        try:
+            res_raw = sublime.load_resource(res_path)
+            res_content = sublime.decode_value(res_raw)
+            result.update(res_content)
+        except (OSError, ValueError):
+            print("Error loading resource: ", res_path)
+            pass
+    get_buildin_command_meta_data.result = result
+    return get_buildin_command_meta_data.result
 
 
 def extract_command_args(command_class):
@@ -91,7 +100,7 @@ def extract_command_args(command_class):
     return command_args
 
 
-def create_arg_snippet_from_args(command_args):
+def create_arg_snippet_by_command_args(command_args):
     def _next_i():
         try:
             i = _next_i.i
@@ -121,25 +130,31 @@ def create_arg_snippet_from_args(command_args):
     return args
 
 
-def create_arg_snippet_from_command_name(command_name):
-    buildin_args = get_buildin_command_args()
-    if command_name in buildin_args:
-        # check whether it is in the buildin command list
-        command_args = buildin_args[command_name]
-    else:
-        try:
-            command_class = next(
-                c
-                for l in sublime_plugin.all_command_classes for c in l
-                if get_command_name(c) == command_name
-            )
-        except StopIteration:
-            return  # the command is not defined
+def find_class_by_command_name(command_name):
+    try:
+        command_class = next(
+            c
+            for l in sublime_plugin.all_command_classes for c in l
+            if get_command_name(c) == command_name
+        )
+    except StopIteration:
+        command_class = None
+    return command_class
 
+
+def create_arg_snippet_by_command_name(command_name):
+    buildin_meta_data = get_buildin_command_meta_data()
+    if command_name in buildin_meta_data:
+        # check whether it is in the buildin command list
+        command_args = buildin_meta_data[command_name].get("args", [])
+    else:
+        command_class = find_class_by_command_name(command_name)
+        if not command_class:
+            return  # the command is not defined
         command_args = extract_command_args(command_class)
     if len(command_args) == 0:
         return
-    args = create_arg_snippet_from_args(command_args)
+    args = create_arg_snippet_by_command_args(command_args)
     return args
 
 
@@ -166,7 +181,7 @@ class SublimeTextCommandArgsCompletionListener(sublime_plugin.EventListener):
             return default_args
 
         command_name = m.group(1)
-        args = create_arg_snippet_from_command_name(command_name)
+        args = create_arg_snippet_by_command_name(command_name)
         if not args:
             return default_args
 
