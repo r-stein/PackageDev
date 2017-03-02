@@ -1,10 +1,13 @@
 {
     "auto_complete": {
-        "args": [],
+        "args": [
+             ["api_completions_only", false],
+             ["disable_auto_insert", false]
+        ],
         "doc_string": "",
     },
     "build": {
-        "args": [/*TODO*/],
+        "args": [["select", false]/*TODO...*/],
         "doc_string": "",
     },
     "cancel_build": {
@@ -40,7 +43,7 @@
         "doc_string": "",
     },
     "expand_selection": {
-        "args": [/*TODO*/],
+        "args": [["to", "line|scope|brackets|indentation|tag"]],
         "doc_string": "",
     },
     "find_all_under": {
@@ -68,7 +71,7 @@
         "doc_string": "",
     },
     "focus_group": {
-        "args": [["group"]],
+        "args": [["group", 0]],
         "doc_string": "",
     },
     "hide_auto_complete": {
@@ -116,11 +119,11 @@
         "doc_string": "",
     },
     "move_to": {
-        "args": [["to"]],
+        "args": [["to", "eol|bol|eof|bof|brackets"]],
         "doc_string": "",
     },
     "move_to_group": {
-        "args": [/*TODO*/],
+        "args": [["group", 0]],
         "doc_string": "",
     },
     "new_file": {
@@ -284,7 +287,7 @@
         "doc_string": "",
     },
     "sort_lines": {
-        "args": [],
+        "args": [["case_sensitive", true]],
         "doc_string": "",
     },
     "split_selection_into_lines": {
