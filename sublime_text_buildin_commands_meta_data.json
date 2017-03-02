@@ -327,7 +327,7 @@
         "doc_string": "",
     },
     "toggle_setting": {
-        "args": [],
+        "args": [["setting"]],
         "doc_string": "",
     },
     "transpose": {
