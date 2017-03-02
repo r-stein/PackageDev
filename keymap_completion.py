@@ -79,12 +79,11 @@ def get_buildin_command_args():
 def extract_command_args(command_class):
     spec = inspect.getfullargspec(command_class.run)
     args = spec.args
-    defaults = spec.defaults or []
-    defaultsl = len(defaults)
-    command_args = list(reversed(
-        ((a, defaults[defaultsl - i - 1]) if defaultsl - i > 0 else (a,))
+    defaults = list(reversed(spec.defaults or []))
+    command_args = list(reversed([
+        ((a, defaults[i]) if len(defaults) > i else (a,))
         for i, a in enumerate(reversed(args))
-    ))
+    ]))
     if len(command_args) >= 2 and command_args[1][0] == "edit":
         del command_args[1]
     if len(command_args) >= 1 and command_args[0][0] == "self":
@@ -124,10 +123,10 @@ def create_arg_snippet_from_args(command_args):
 
 def create_arg_snippet_from_command_name(command_name):
     buildin_args = get_buildin_command_args()
-    try:
+    if command_name in buildin_args:
         # check whether it is in the buildin command list
         command_args = buildin_args[command_name]
-    except KeyError:
+    else:
         try:
             command_class = next(
                 c
