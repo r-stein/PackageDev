@@ -1,8 +1,14 @@
 {
+    "append": {
+        "args": [["characters"]],
+        "doc_string": "",
+    },
     "auto_complete": {
         "args": [
              ["api_completions_only", false],
-             ["disable_auto_insert", false]
+             ["disable_auto_insert", false],
+             ["next_completion_if_showing", false],
+             ["auto_complete_commit_on_tab", true],
         ],
         "doc_string": "",
     },
@@ -43,7 +49,7 @@
         "doc_string": "",
     },
     "expand_selection": {
-        "args": [["to", "line|scope|brackets|indentation|tag"]],
+        "args": [["to", "line|scope|brackets|indentation|tag|bol|hardbol|eol|hardeol|bof|eof|brackets"]],
         "doc_string": "",
     },
     "find_all_under": {
@@ -114,7 +120,8 @@
         "args": [
             ["forward", true],
             ["lines", false],
-            ["by", "chars"]
+            ["by", "chars|pages|lines|characters|words|word_ends|subwords|subword_ends|stops"],
+            ["extend", false],
         ],
         "doc_string": "",
     },
@@ -207,7 +214,7 @@
         "doc_string": "",
     },
     "reindent": {
-        "args": [],
+        "args": [["single_line", false]],
         "doc_string": "",
     },
     "right_delete": {
