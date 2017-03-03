@@ -6,20 +6,31 @@ import sublime
 import sublime_plugin
 
 
-def get_buildin_commands():
-    if hasattr(get_buildin_commands, "result"):
-        return get_buildin_commands.result
+def get_buildin_command_meta_data():
+    if hasattr(get_buildin_command_meta_data, "result"):
+        return get_buildin_command_meta_data.result
 
-    res_paths = sublime.find_resources("sublime_text_buildin_commands.json")
-    result = []
+    res_paths = sublime.find_resources(
+        "sublime_text_buildin_commands_meta_data.json")
+    result = {}
     for res_path in res_paths:
         try:
             res_raw = sublime.load_resource(res_path)
             res_content = sublime.decode_value(res_raw)
-            result.extend(res_content)
+            result.update(res_content)
         except (OSError, ValueError):
             print("Error loading resource: ", res_path)
             pass
+    get_buildin_command_meta_data.result = result
+    return get_buildin_command_meta_data.result
+
+
+def get_buildin_commands():
+    if hasattr(get_buildin_commands, "result"):
+        return get_buildin_commands.result
+
+    meta = get_buildin_command_meta_data()
+    result = list(sorted(meta.keys()))
 
     get_buildin_commands.result = result
     return get_buildin_commands.result
@@ -64,25 +75,6 @@ class SublimeTextCommandCompletionListener(sublime_plugin.EventListener):
             for c in l
         ]
         return compl
-
-
-def get_buildin_command_meta_data():
-    if hasattr(get_buildin_command_meta_data, "result"):
-        return get_buildin_command_meta_data.result
-
-    res_paths = sublime.find_resources(
-        "sublime_text_buildin_commands_meta_data.json")
-    result = {}
-    for res_path in res_paths:
-        try:
-            res_raw = sublime.load_resource(res_path)
-            res_content = sublime.decode_value(res_raw)
-            result.update(res_content)
-        except (OSError, ValueError):
-            print("Error loading resource: ", res_path)
-            pass
-    get_buildin_command_meta_data.result = result
-    return get_buildin_command_meta_data.result
 
 
 def extract_command_args(command_class):
