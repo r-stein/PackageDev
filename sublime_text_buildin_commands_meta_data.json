@@ -44,21 +44,6 @@
         "doc_string": "",
         "command_type": "text",
     },
-    "decrease_font_size": {
-        "args": [],
-        "doc_string": "",
-        "command_type": "TODO app?",
-    },
-    "delete_word": {
-        "args": [],
-        "doc_string": "",
-        "command_type": "text",
-    },
-    "duplicate_line": {
-        "args": [],
-        "doc_string": "",
-        "command_type": "text",
-    },
     "expand_selection": {
         "args": [["to", "line|scope|brackets|indentation|tag|bol|hardbol|eol|hardeol|bof|eof|brackets"]],
         "doc_string": "",
@@ -113,11 +98,6 @@
         "args": [],
         "doc_string": "",
         "command_type": "window",
-    },
-    "increase_font_size": {
-        "args": [],
-        "doc_string": "",
-        "command_type": "TODO app?",
     },
     "indent": {
         "args": [],
@@ -331,11 +311,6 @@
         "doc_string": "",
         "command_type": "window",
     },
-    "show_scope_name": {
-        "args": [],
-        "doc_string": "",
-        "command_type": "TODO",
-    },
     "single_selection": {
         "args": [],
         "doc_string": "",
@@ -361,28 +336,8 @@
         "doc_string": "",
         "command_type": "text",
     },
-    "sort_lines": {
-        "args": [["case_sensitive", true]],
-        "doc_string": "",
-        "command_type": "text",
-    },
     "split_selection_into_lines": {
         "args": [],
-        "doc_string": "",
-        "command_type": "text",
-    },
-    "swap_line_down": {
-        "args": [],
-        "doc_string": "",
-        "command_type": "text",
-    },
-    "swap_line_up": {
-        "args": [],
-        "doc_string": "",
-        "command_type": "text",
-    },
-    "toggle_comment": {
-        "args": [["block", false]],
         "doc_string": "",
         "command_type": "text",
     },
@@ -408,11 +363,6 @@
     },
     "toggle_setting": {
         "args": [["setting"]],
-        "doc_string": "",
-        "command_type": "text",
-    },
-    "transpose": {
-        "args": [],
         "doc_string": "",
         "command_type": "text",
     },
