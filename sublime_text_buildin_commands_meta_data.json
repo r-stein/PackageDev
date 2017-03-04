@@ -222,17 +222,17 @@
     "prompt_open_file": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "window",
     },
     "prompt_save_as": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "window",
     },
     "prompt_select_project": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "window",
     },
     "redo": {
         "args": [],
@@ -319,12 +319,12 @@
     "slurp_find_string": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "window",
     },
     "slurp_replace_string": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "window",
     },
     "soft_redo": {
         "args": [],
