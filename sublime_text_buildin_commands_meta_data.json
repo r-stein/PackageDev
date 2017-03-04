@@ -2,6 +2,7 @@
     "append": {
         "args": [["characters"]],
         "doc_string": "",
+        "command_type": "text",
     },
     "auto_complete": {
         "args": [
@@ -11,110 +12,137 @@
              ["auto_complete_commit_on_tab", true],
         ],
         "doc_string": "",
+        "command_type": "text",
     },
     "build": {
         "args": [["select", false]/*TODO...*/],
         "doc_string": "",
+        "command_type": "window",
     },
     "cancel_build": {
         "args": [/*TODO*/],
         "doc_string": "",
+        "command_type": "window",
     },
     "clear_fields": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "close_file": {
         "args": [],
         "doc_string": "Close the active file.",
+        "command_type": "window",
     },
     "copy": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "cut": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "decrease_font_size": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO app?",
     },
     "delete_word": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "duplicate_line": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "expand_selection": {
         "args": [["to", "line|scope|brackets|indentation|tag|bol|hardbol|eol|hardeol|bof|eof|brackets"]],
         "doc_string": "",
+        "command_type": "text",
     },
     "find_all_under": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "find_next": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "find_prev": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "find_under": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "find_under_expand": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "find_under_prev": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "focus_group": {
         "args": [["group", 0]],
         "doc_string": "",
+        "command_type": "window",
     },
     "hide_auto_complete": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "hide_overlay": {
         "args": [],
         "doc_string": "",
+        "command_type": "window",
     },
     "hide_panel": {
         "args": [],
         "doc_string": "",
+        "command_type": "window",
     },
     "increase_font_size": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO app?",
     },
     "indent": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "insert": {
         "args": [["characters"]],
         "doc_string": "",
+        "command_type": "text",
     },
     "insert_snippet": {
         "args": [["contents"]],
         "doc_string": "",
+        "command_type": "text",
     },
     "join_lines": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "left_delete": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "move": {
         "args": [
@@ -124,126 +152,157 @@
             ["extend", false],
         ],
         "doc_string": "",
+        "command_type": "text",
     },
     "move_to": {
         "args": [["to", "eol|bol|eof|bof|brackets"]],
         "doc_string": "",
+        "command_type": "text",
     },
     "move_to_group": {
         "args": [["group", 0]],
         "doc_string": "",
+        "command_type": "window",
     },
     "new_file": {
         "args": [],
         "doc_string": "",
+        "command_type": "window",
     },
     "new_window": {
         "args": [],
         "doc_string": "",
+        "command_type": "app",
     },
     "next_field": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "next_misspelling": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "next_result": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "next_view": {
         "args": [],
         "doc_string": "",
+        "command_type": "window",
     },
     "next_view_in_stack": {
         "args": [],
         "doc_string": "",
+        "command_type": "window",
     },
     "open_dir": {
         "args": [/*TODO*/],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "paste": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "paste_and_indent": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "prev_field": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "prev_misspelling": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "prev_result": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "prev_view": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "prev_view_in_stack": {
         "args": [],
         "doc_string": "",
+        "command_type": "window",
     },
     "prompt_open_file": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "prompt_save_as": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "prompt_select_project": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "redo": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "redo_or_repeat": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "reindent": {
         "args": [["single_line", false]],
         "doc_string": "",
+        "command_type": "text",
     },
     "right_delete": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "run_macro": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "run_macro_file": {
         "args": [["file"]],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "save": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "scroll_lines": {
         "args": [["amount", 1.0]],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "select_all": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "select_lines": {
         "args": [["forward", true]],
         "doc_string": "",
+        "command_type": "text",
     },
     "set_layout": {
         "args": [
@@ -252,6 +311,7 @@
             ["cells", [[0, 0, 1, 1]]]
         ],
         "doc_string": "",
+        "command_type": "window",
     },
     "show_overlay": {
         "args": [
@@ -261,6 +321,7 @@
             // TODO...
         ],
         "doc_string": "",
+        "command_type": "window",
     },
     "show_panel": {
         "args": [
@@ -268,85 +329,101 @@
             ["reverse", false]
         ],
         "doc_string": "",
+        "command_type": "window",
     },
     "show_scope_name": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "single_selection": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "slurp_find_string": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "slurp_replace_string": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "soft_redo": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "soft_undo": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "sort_lines": {
         "args": [["case_sensitive", true]],
         "doc_string": "",
+        "command_type": "text",
     },
     "split_selection_into_lines": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "swap_line_down": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "swap_line_up": {
         "args": [],
         "doc_string": "",
-    },
-    "switch_file": {
-        "args": [["extensions", ["c", "h"]]],
-        "doc_string": "",
+        "command_type": "text",
     },
     "toggle_comment": {
         "args": [["block", false]],
         "doc_string": "",
+        "command_type": "text",
     },
     "toggle_full_screen": {
         "args": [],
         "doc_string": "",
+        "command_type": "window",
     },
     "toggle_overwrite": {
         "args": [],
         "doc_string": "",
+        "command_type": "app",
     },
     "toggle_record_macro": {
         "args": [],
         "doc_string": "",
+        "command_type": "TODO",
     },
     "toggle_side_bar": {
         "args": [],
         "doc_string": "",
+        "command_type": "window",
     },
     "toggle_setting": {
         "args": [["setting"]],
         "doc_string": "",
+        "command_type": "text",
     },
     "transpose": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "undo": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
     "unindent": {
         "args": [],
         "doc_string": "",
+        "command_type": "text",
     },
 }
