@@ -32,7 +32,7 @@ def get_buildin_commands(command_type=""):
     Parameters:
         command_type (str) = ""
             Limit the commands to the given type. Valid types are
-            "", "text", "window", and "app"
+            "" to get all types, "text", "window", and "app"
 
     Returns (list of str)
         The command names for the type.
@@ -136,7 +136,15 @@ class SublimeTextCommandCompletionPythonListener(sublime_plugin.EventListener):
         name = get_command_name(c)
         module = c.__module__
         package = module.split(".")[0]
-        stype = "T"
+        if issubclass(c, sublime_plugin.TextCommand):
+            stype = "T"
+        elif issubclass(c, sublime_plugin.WindowCommand):
+            stype = "W"
+        elif issubclass(c, sublime_plugin.ApplicationCommand):
+            stype = "A"
+        else:
+            stype = "?"
+
         show = "{name}\t({stype}) {package}".format(**locals())
         return show, name
 
@@ -185,10 +193,11 @@ def extract_command_args(command_class):
         ((a, defaults[i]) if len(defaults) > i else (a,))
         for i, a in enumerate(reversed(args))
     ]))
-    if len(command_args) >= 2 and command_args[1][0] == "edit":
-        del command_args[1]
-    if len(command_args) >= 1 and command_args[0][0] == "self":
-        del command_args[0]
+    # strip given arguments (self and edit)
+    if issubclass(command_class, sublime_plugin.TextCommand):
+        command_args = command_args[2:]
+    else:
+        command_args = command_args[1:]
     return command_args
 
 
@@ -333,12 +342,12 @@ class SublimeTextCommandArgsCompletionPythonListener(
         # get the command name
         command_name = m.group("command_name")[::-1]
 
-        default_args = [("iargs\tArguments", '{"$1": "$2"$0}')]
+        default_args = [("args\tArguments", '{"$1": "$2"$0}')]
 
         command_args = get_args_by_command_name(command_name)
         args = create_arg_snippet_by_command_args(command_args, False)
         if not args:
             return default_args
 
-        compl = [("iargs\tauto-detected Arguments", args)]
+        compl = [("args\tauto-detected Arguments", args)]
         return compl
