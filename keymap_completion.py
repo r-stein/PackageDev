@@ -167,13 +167,12 @@ class SublimeTextCommandCompletionPythonListener(sublime_plugin.EventListener):
             return
         # get the command type
         caller_var = m.group("callervar")[::-1]
-        command_type = {
-            "view": "text",
-            "v": "text",
-            "window": "",
-            "w": "",
-            "sublime": "app"
-        }.get(caller_var)
+        if "view" in caller_var or caller_var == "v":
+            command_type = "text"
+        elif caller_var == "sublime":
+            command_type = "app"
+        else:
+            command_type = ""
 
         command_classes = get_package_command_classes(command_type)
         compl = [
