@@ -6,12 +6,12 @@ import sublime
 import sublime_plugin
 
 
-def get_buildin_command_meta_data():
-    if hasattr(get_buildin_command_meta_data, "result"):
-        return get_buildin_command_meta_data.result
+def get_builtin_command_meta_data():
+    if hasattr(get_builtin_command_meta_data, "result"):
+        return get_builtin_command_meta_data.result
 
     res_paths = sublime.find_resources(
-        "sublime_text_buildin_commands_meta_data.json")
+        "sublime_text_builtin_commands_meta_data.json")
     result = {}
     for res_path in res_paths:
         try:
@@ -21,13 +21,13 @@ def get_buildin_command_meta_data():
         except (OSError, ValueError):
             print("Error loading resource: ", res_path)
             pass
-    get_buildin_command_meta_data.result = result
-    return get_buildin_command_meta_data.result
+    get_builtin_command_meta_data.result = result
+    return get_builtin_command_meta_data.result
 
 
-def get_buildin_commands(command_type=""):
+def get_builtin_commands(command_type=""):
     """
-    Retrieve a list for the names of the buildin commands.
+    Retrieve a list for the names of the builtin commands.
 
     Parameters:
         command_type (str) = ""
@@ -38,14 +38,14 @@ def get_buildin_commands(command_type=""):
         The command names for the type.
     """
     try:
-        cache = get_buildin_commands.cache
+        cache = get_builtin_commands.cache
     except AttributeError:
-        cache = get_buildin_commands.cache = {}
+        cache = get_builtin_commands.cache = {}
 
     if command_type in cache:
         return cache[command_type]
 
-    meta = get_buildin_command_meta_data()
+    meta = get_builtin_command_meta_data()
     if not command_type:
         result = list(sorted(meta.keys()))
     else:
@@ -107,8 +107,9 @@ class SublimeTextCommandCompletionKeymapListener(sublime_plugin.EventListener):
         if not view.score_selector(loc, keymap_scope):
             return
         command_classes = get_package_command_classes()
+        print("get_builtin_commands():", get_builtin_commands())
         compl = [
-            (c + "\tbuild-in", c) for c in get_buildin_commands()
+            (c + "\tbuilt-in", c) for c in get_builtin_commands()
         ] + [
             self._create_completion(c)
             for c in command_classes
@@ -125,9 +126,9 @@ class SublimeTextCommandCompletionPythonListener(sublime_plugin.EventListener):
     )
 
     @staticmethod
-    def _create_buildin_completion(c):
-        meta = get_buildin_command_meta_data()
-        show = "{c}\t({stype}) buildin".format(
+    def _create_builtin_completion(c):
+        meta = get_builtin_command_meta_data()
+        show = "{c}\t({stype}) built-in".format(
             c=c, stype=meta[c].get("command_type", " ")[:1].upper())
         return show, c
 
@@ -176,8 +177,8 @@ class SublimeTextCommandCompletionPythonListener(sublime_plugin.EventListener):
 
         command_classes = get_package_command_classes(command_type)
         compl = [
-            self._create_buildin_completion(c)
-            for c in get_buildin_commands(command_type)
+            self._create_builtin_completion(c)
+            for c in get_builtin_commands(command_type)
         ] + [
             self._create_completion(c)
             for c in command_classes
@@ -254,10 +255,10 @@ def find_class_by_command_name(command_name):
 
 
 def get_args_by_command_name(command_name):
-    buildin_meta_data = get_buildin_command_meta_data()
-    if command_name in buildin_meta_data:
-        # check whether it is in the buildin command list
-        command_args = buildin_meta_data[command_name].get("args", [])
+    builtin_meta_data = get_builtin_command_meta_data()
+    if command_name in builtin_meta_data:
+        # check whether it is in the builtin command list
+        command_args = builtin_meta_data[command_name].get("args", [])
     else:
         command_class = find_class_by_command_name(command_name)
         if not command_class:
@@ -267,10 +268,10 @@ def get_args_by_command_name(command_name):
 
 
 def create_arg_snippet_by_command_name(command_name):
-    buildin_meta_data = get_buildin_command_meta_data()
-    if command_name in buildin_meta_data:
-        # check whether it is in the buildin command list
-        command_args = buildin_meta_data[command_name].get("args", [])
+    builtin_meta_data = get_builtin_command_meta_data()
+    if command_name in builtin_meta_data:
+        # check whether it is in the builtin command list
+        command_args = builtin_meta_data[command_name].get("args", [])
     else:
         command_class = find_class_by_command_name(command_name)
         if not command_class:
