@@ -142,7 +142,6 @@ class SublimeTextCommandCompletionPythonListener(sublime_plugin.EventListener):
 
     def on_query_completions(self, view, prefix, locations):
         loc = locations[0]
-        command_type = ""
         python_arg_scope = (
             "source.python meta.function-call.python "
             "meta.function-call.arguments.python string.quoted"
@@ -193,7 +192,7 @@ def extract_command_args(command_class):
     return command_args
 
 
-def create_arg_snippet_by_command_args(command_args):
+def create_arg_snippet_by_command_args(command_args, for_json=True):
     def _next_i():
         try:
             i = _next_i.i
@@ -213,13 +212,23 @@ def create_arg_snippet_by_command_args(command_args):
                 v = '"${{{i}:{v}}}"'.format(
                     i=_next_i(), v=escape_in_snippet(v))
             else:
+                if for_json:
+                    dumps = json.dumps(v)
+                else:  # python
+                    dumps = str(v)
                 v = '${{{i}:{v}}}'.format(
-                    i=_next_i(), v=escape_in_snippet(json.dumps(v)))
+                    i=_next_i(), v=escape_in_snippet(dumps))
         else:
             v = '"${i}"'.format(i=_next_i())
         return '"{k}": {v}'.format(**locals())
-    args_content = ",\n\t".join(make_snippet_value(kv) for kv in command_args)
-    args = '"args": {{\n\t{0}\n}},$0'.format(args_content)
+
+    if for_json:
+        args_content = ",\n\t".join(
+            make_snippet_value(kv) for kv in command_args)
+        args = '"args": {{\n\t{0}\n}},$0'.format(args_content)
+    else:
+        args_content = ", ".join(make_snippet_value(kv) for kv in command_args)
+        args = '{{{0}}}'.format(args_content)
     return args
 
 
@@ -233,6 +242,19 @@ def find_class_by_command_name(command_name):
     except StopIteration:
         command_class = None
     return command_class
+
+
+def get_args_by_command_name(command_name):
+    buildin_meta_data = get_buildin_command_meta_data()
+    if command_name in buildin_meta_data:
+        # check whether it is in the buildin command list
+        command_args = buildin_meta_data[command_name].get("args", [])
+    else:
+        command_class = find_class_by_command_name(command_name)
+        if not command_class:
+            return  # the command is not defined
+        command_args = extract_command_args(command_class)
+    return command_args
 
 
 def create_arg_snippet_by_command_name(command_name):
@@ -251,7 +273,8 @@ def create_arg_snippet_by_command_name(command_name):
     return args
 
 
-class SublimeTextCommandArgsCompletionListener(sublime_plugin.EventListener):
+class SublimeTextCommandArgsCompletionKeymapListener(
+        sublime_plugin.EventListener):
     def on_query_completions(self, view, prefix, locations):
         scope = " ".join([
             "source.json.sublimekeymap",
@@ -279,4 +302,43 @@ class SublimeTextCommandArgsCompletionListener(sublime_plugin.EventListener):
             return default_args
 
         compl = [("args\tauto-detected Arguments", args)]
+        return compl
+
+
+class SublimeTextCommandArgsCompletionPythonListener(
+        sublime_plugin.EventListener):
+
+    _RE_LINE_BEFORE = re.compile(
+        r"\w*\s*,"
+        r"(?:\'|\")(?P<command_name>\w+)(?:\'|\")"
+        r"\(dnammoc_nur\."
+        r"\w+"
+    )
+
+    def on_query_completions(self, view, prefix, locations):
+        loc = locations[0]
+        python_arg_scope = (
+            "source.python meta.function-call.python"
+        )
+        if not view.score_selector(loc, python_arg_scope):
+            return
+        if sublime.packages_path() not in view.file_name():
+            return
+
+        before_region = sublime.Region(view.line(loc).a, loc)
+        before = view.substr(before_region)[::-1]
+        m = self._RE_LINE_BEFORE.match(before)
+        if not m:
+            return
+        # get the command name
+        command_name = m.group("command_name")[::-1]
+
+        default_args = [("iargs\tArguments", '{"$1": "$2"$0}')]
+
+        command_args = get_args_by_command_name(command_name)
+        args = create_arg_snippet_by_command_args(command_args, False)
+        if not args:
+            return default_args
+
+        compl = [("iargs\tauto-detected Arguments", args)]
         return compl
