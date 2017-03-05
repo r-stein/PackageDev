@@ -285,6 +285,7 @@ def create_arg_snippet_by_command_name(command_name):
 
 class SublimeTextCommandArgsCompletionKeymapListener(
         sublime_plugin.EventListener):
+    _default_args = [("args\tArguments", '"args": {\n\t"$1": "$2"$0\n},')]
     _keymap_scope = " ".join([
         "source.json.sublimekeymap",
         "meta.keybinding.collection.sublimekeymap",
@@ -297,7 +298,6 @@ class SublimeTextCommandArgsCompletionKeymapListener(
     def on_query_completions(self, view, prefix, locations):
         if not view.score_selector(locations[0], self._keymap_scope):
             return
-        default_args = [("args\tArguments", '"args": {\n\t"$1": "$2"$0\n},')]
         # extract the line and the line above to search for the command
         lines_reg = view.line(
             sublime.Region(view.line(locations[0]).a - 1, locations[0]))
@@ -305,12 +305,12 @@ class SublimeTextCommandArgsCompletionKeymapListener(
         _RE_COMMAND_SEARCH = re.compile(r'\"command\"\s*\:\s*\"(\w+)\"')
         m = _RE_COMMAND_SEARCH.search(lines)
         if not m:
-            return default_args
+            return self._default_args
 
         command_name = m.group(1)
         args = create_arg_snippet_by_command_name(command_name)
         if not args:
-            return default_args
+            return self._default_args
 
         compl = [("args\tauto-detected Arguments", args)]
         return compl
@@ -319,6 +319,7 @@ class SublimeTextCommandArgsCompletionKeymapListener(
 class SublimeTextCommandArgsCompletionPythonListener(
         sublime_plugin.EventListener):
 
+    _default_args = [("args\tArguments", '{"$1": "$2"$0}')]
     _RE_LINE_BEFORE = re.compile(
         r"\w*\s*,"
         r"(?:\'|\")(?P<command_name>\w+)(?:\'|\")"
@@ -344,12 +345,10 @@ class SublimeTextCommandArgsCompletionPythonListener(
         # get the command name
         command_name = m.group("command_name")[::-1]
 
-        default_args = [("args\tArguments", '{"$1": "$2"$0}')]
-
         command_args = get_args_by_command_name(command_name)
         args = create_arg_snippet_by_command_args(command_args, False)
         if not args:
-            return default_args
+            return self._default_args
 
         compl = [("args\tauto-detected Arguments", args)]
         return compl
