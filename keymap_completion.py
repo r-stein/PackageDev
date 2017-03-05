@@ -284,16 +284,17 @@ def create_arg_snippet_by_command_name(command_name):
 
 class SublimeTextCommandArgsCompletionKeymapListener(
         sublime_plugin.EventListener):
+    _keymap_scope = " ".join([
+        "source.json.sublimekeymap",
+        "meta.keybinding.collection.sublimekeymap",
+        "meta.structure.dictionary.json",
+        "- string",
+        "- comment",
+        "- meta.structure.dictionary.json meta.structure.dictionary.json"
+    ])
+
     def on_query_completions(self, view, prefix, locations):
-        scope = " ".join([
-            "source.json.sublimekeymap",
-            "meta.keybinding.collection.sublimekeymap",
-            "meta.structure.dictionary.json",
-            "- string",
-            "- comment",
-            "- meta.structure.dictionary.json meta.structure.dictionary.json"
-        ])
-        if not view.score_selector(locations[0], scope):
+        if not view.score_selector(locations[0], self._keymap_scope):
             return
         default_args = [("args\tArguments", '"args": {\n\t"$1": "$2"$0\n},')]
         # extract the line and the line above to search for the command
