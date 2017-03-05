@@ -7,6 +7,12 @@ import sublime_plugin
 
 
 def get_builtin_command_meta_data():
+    """
+    Retrieve the meta data of the built-in commands.
+
+    Returns (dict)
+        The stored meta data for each command accessible by their names.
+    """
     if hasattr(get_builtin_command_meta_data, "result"):
         return get_builtin_command_meta_data.result
 
@@ -27,7 +33,7 @@ def get_builtin_command_meta_data():
 
 def get_builtin_commands(command_type=""):
     """
-    Retrieve a list for the names of the builtin commands.
+    Retrieve a list of the names of the built-in commands.
 
     Parameters:
         command_type (str) = ""
@@ -58,7 +64,18 @@ def get_builtin_commands(command_type=""):
     return result
 
 
-def get_package_command_classes(command_type=""):
+def get_python_command_classes(command_type=""):
+    """
+    Retrieve a list of all commands for a given command type.
+
+    Parameters:
+        command_type (str) = ""
+            Limit the commands to the given type. Valid types are
+            "" to get all types, "text", "window", and "app"
+
+    Returns (list of sublime_plugin.Command)
+        The command classes for the command type.
+    """
     if not command_type:
         command_classes = [
             c for l in sublime_plugin.all_command_classes for c in l
@@ -73,6 +90,17 @@ def get_package_command_classes(command_type=""):
 
 
 def get_command_name(command_class):
+    """
+    Get the name of a command.
+
+    Parameters:
+        command_class (<: sublime_plugin.Command)
+            The command class for which the name should be retrieved.
+
+
+    Returns (str)
+        The name of the command.
+    """
     # default name() method
     # TODO how to directly class command_class.name()
     clsname = command_class.__name__
@@ -106,8 +134,7 @@ class SublimeTextCommandCompletionKeymapListener(sublime_plugin.EventListener):
         loc = locations[0]
         if not view.score_selector(loc, keymap_scope):
             return
-        command_classes = get_package_command_classes()
-        print("get_builtin_commands():", get_builtin_commands())
+        command_classes = get_python_command_classes()
         compl = [
             (c + "\tbuilt-in", c) for c in get_builtin_commands()
         ] + [
@@ -174,7 +201,7 @@ class SublimeTextCommandCompletionPythonListener(sublime_plugin.EventListener):
         else:
             command_type = ""
 
-        command_classes = get_package_command_classes(command_type)
+        command_classes = get_python_command_classes(command_type)
         compl = [
             self._create_builtin_completion(c)
             for c in get_builtin_commands(command_type)
