@@ -25,15 +25,51 @@ def get_buildin_command_meta_data():
     return get_buildin_command_meta_data.result
 
 
-def get_buildin_commands():
-    if hasattr(get_buildin_commands, "result"):
-        return get_buildin_commands.result
+def get_buildin_commands(command_type=""):
+    """
+    Retrieve a list for the names of the buildin commands.
+
+    Parameters:
+        command_type (str) = ""
+            Limit the commands to the given type. Valid types are
+            "", "text", "window", and "app"
+
+    Returns (list of str)
+        The command names for the type.
+    """
+    try:
+        cache = get_buildin_commands.cache
+    except AttributeError:
+        cache = get_buildin_commands.cache = {}
+
+    if command_type in cache:
+        return cache[command_type]
 
     meta = get_buildin_command_meta_data()
-    result = list(sorted(meta.keys()))
+    if not command_type:
+        result = list(sorted(meta.keys()))
+    else:
+        result = list(sorted(
+            k for k, v in meta.items()
+            if v.get("command_type", "") == command_type)
+        )
 
-    get_buildin_commands.result = result
-    return get_buildin_commands.result
+    cache[command_type] = result
+    return result
+
+
+def get_package_command_classes(command_type=""):
+    if not command_type:
+        command_classes = [
+            c for l in sublime_plugin.all_command_classes for c in l
+        ]
+    else:
+        command_classes = {
+            "text": sublime_plugin.text_command_classes,
+            "window": sublime_plugin.window_command_classes,
+            "app": sublime_plugin.application_command_classes
+        }.get(command_type, [])
+    return command_classes
 
 
 def get_command_name(command_class):
@@ -54,25 +90,90 @@ def get_command_name(command_class):
     return name
 
 
-def _create_completion(c):
-    name = get_command_name(c)
-    module = c.__module__
-    package = module.split(".")[0]
-    show = "{name}\t{package}".format(**locals())
-    return show, name
+class SublimeTextCommandCompletionKeymapListener(sublime_plugin.EventListener):
+    @staticmethod
+    def _create_completion(c):
+        name = get_command_name(c)
+        module = c.__module__
+        package = module.split(".")[0]
+        show = "{name}\t{package}".format(**locals())
+        return show, name
 
-
-class SublimeTextCommandCompletionListener(sublime_plugin.EventListener):
     def on_query_completions(self, view, prefix, locations):
-        scope = "source.json.sublimekeymap meta.command-name.sublimekeymap"
-        if not view.score_selector(locations[0], scope):
+        keymap_scope = (
+            "source.json.sublimekeymap meta.command-name.sublimekeymap"
+        )
+        loc = locations[0]
+        if not view.score_selector(loc, keymap_scope):
             return
+        command_classes = get_package_command_classes()
         compl = [
             (c + "\tbuild-in", c) for c in get_buildin_commands()
         ] + [
-            _create_completion(c)
-            for l in sublime_plugin.all_command_classes
-            for c in l
+            self._create_completion(c)
+            for c in command_classes
+        ]
+        return compl
+
+
+class SublimeTextCommandCompletionPythonListener(sublime_plugin.EventListener):
+
+    _RE_LINE_BEFORE = re.compile(
+        r"\w*(?:\'|\")"
+        r"\(dnammoc_nur\."
+        r"(?P<callervar>\w+)"
+    )
+
+    @staticmethod
+    def _create_buildin_completion(c):
+        meta = get_buildin_command_meta_data()
+        show = "{c}\t({stype}) buildin".format(
+            c=c, stype=meta[c].get("command_type", " ")[:1].upper())
+        return show, c
+
+    @staticmethod
+    def _create_completion(c):
+        name = get_command_name(c)
+        module = c.__module__
+        package = module.split(".")[0]
+        stype = "T"
+        show = "{name}\t({stype}) {package}".format(**locals())
+        return show, name
+
+    def on_query_completions(self, view, prefix, locations):
+        loc = locations[0]
+        command_type = ""
+        python_arg_scope = (
+            "source.python meta.function-call.python "
+            "meta.function-call.arguments.python string.quoted"
+        )
+        if not view.score_selector(loc, python_arg_scope):
+            return
+        if sublime.packages_path() not in view.file_name():
+            return
+
+        before_region = sublime.Region(view.line(loc).a, loc)
+        before = view.substr(before_region)[::-1]
+        m = self._RE_LINE_BEFORE.match(before)
+        if not m:
+            return
+        # get the command type
+        caller_var = m.group("callervar")[::-1]
+        command_type = {
+            "view": "text",
+            "v": "text",
+            "window": "",
+            "w": "",
+            "sublime": "app"
+        }.get(caller_var)
+
+        command_classes = get_package_command_classes(command_type)
+        compl = [
+            self._create_buildin_completion(c)
+            for c in get_buildin_commands(command_type)
+        ] + [
+            self._create_completion(c)
+            for c in command_classes
         ]
         return compl
 
