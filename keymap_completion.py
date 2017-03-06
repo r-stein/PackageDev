@@ -243,7 +243,7 @@ def extract_command_class_args(command_class):
     return command_args
 
 
-def create_arg_snippet_by_command_args(command_args, for_json=True):
+def create_args_snippet_from_command_args(command_args, for_json=True):
     def _next_i():
         try:
             i = _next_i.i
@@ -283,7 +283,7 @@ def create_arg_snippet_by_command_args(command_args, for_json=True):
     return args
 
 
-def find_class_by_command_name(command_name):
+def find_class_from_command_name(command_name):
     try:
         command_class = next(
             c
@@ -295,13 +295,13 @@ def find_class_by_command_name(command_name):
     return command_class
 
 
-def get_args_by_command_name(command_name):
+def get_args_from_command_name(command_name):
     builtin_meta_data = get_builtin_command_meta_data()
     if command_name in builtin_meta_data:
         # check whether it is in the builtin command list
         command_args = builtin_meta_data[command_name].get("args", [])
     else:
-        command_class = find_class_by_command_name(command_name)
+        command_class = find_class_from_command_name(command_name)
         if not command_class:
             return  # the command is not defined
         command_args = extract_command_class_args(command_class)
@@ -333,10 +333,10 @@ class SublimeTextCommandArgsCompletionKeymapListener(
             return self._default_args
 
         command_name = m.group(1)
-        command_args = get_args_by_command_name(command_name)
+        command_args = get_args_from_command_name(command_name)
         if not command_args:
             return self._default_args
-        args = create_arg_snippet_by_command_args(command_args)
+        args = create_args_snippet_from_command_args(command_args)
 
         compl = [("args\tauto-detected Arguments", args)]
         return compl
@@ -371,10 +371,10 @@ class SublimeTextCommandArgsCompletionPythonListener(
         # get the command name
         command_name = m.group("command_name")[::-1]
 
-        command_args = get_args_by_command_name(command_name)
-        args = create_arg_snippet_by_command_args(command_args, False)
-        if not args:
+        command_args = get_args_from_command_name(command_name)
+        if command_args is None:
             return self._default_args
+        args = create_args_snippet_from_command_args(command_args, False)
 
         compl = [("args\tauto-detected Arguments", args)]
         return compl
