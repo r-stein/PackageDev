@@ -1,6 +1,10 @@
 {
     "append": {
-        "args": [["characters"]],
+        "args": [
+            ["characters"],
+            ["force", false],
+            ["scroll_to_end", false],
+        ],
         "doc_string": "",
         "command_type": "text",
     },
@@ -37,7 +41,7 @@
     "copy": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "text",
     },
     "cut": {
         "args": [],
@@ -162,12 +166,12 @@
     "next_misspelling": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "text",
     },
     "next_result": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "window",
     },
     "next_view": {
         "args": [],
@@ -180,9 +184,20 @@
         "command_type": "window",
     },
     "open_dir": {
-        "args": [/*TODO*/],
-        "doc_string": "",
-        "command_type": "TODO",
+        "args": [
+            ["dir"],
+            ["file"],
+        ],
+        "doc_string": "Open the specified dir in the default File Manager application, optionally highlighting the specified file.",
+        "command_type": "window",
+    },
+    "open_file": {
+        "args": [
+            ["file"],
+            ["contents"],
+        ],
+        "doc_string": "Open the specified file, and if it doesn't exist, prefill the default contents.",
+        "command_type": "window",
     },
     "paste": {
         "args": [],
@@ -202,17 +217,17 @@
     "prev_misspelling": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "text",
     },
     "prev_result": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "window",
     },
     "prev_view": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "window",
     },
     "prev_view_in_stack": {
         "args": [],
@@ -262,17 +277,17 @@
     "run_macro_file": {
         "args": [["file"]],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "view",
     },
     "save": {
         "args": [],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "view", // NOTE: works as both a window command and a view command
     },
     "scroll_lines": {
         "args": [["amount", 1.0]],
         "doc_string": "",
-        "command_type": "TODO",
+        "command_type": "view",
     },
     "select_all": {
         "args": [],
@@ -295,7 +310,7 @@
     },
     "show_overlay": {
         "args": [
-            ["overlay"],
+            ["overlay", "goto|command_palette"],
             ["text"],
             ["show_files"]
             // TODO...
